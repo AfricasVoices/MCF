@@ -1,1 +1,1 @@
-# MCF
+# MCF project pipeline
