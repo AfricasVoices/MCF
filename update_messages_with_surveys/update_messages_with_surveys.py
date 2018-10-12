@@ -31,9 +31,6 @@ if __name__ == "__main__":
 
     # Add survey data to the messages
     TracedData.update_iterable(user, "avf_phone_id", messages, surveys, "survey_responses")
-    for td in messages:
-        print(td)
-        print(td.get("avf_phone_id"))
 
     # Write json output
     IOUtils.ensure_dirs_exist_for_file(json_output_path)
