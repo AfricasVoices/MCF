@@ -60,7 +60,7 @@ if __name__ == "__main__":
     utc_key = "{} (Time) - {}".format(variable_name, flow_name)
     eat_key = "{} (Time EAT) - {}".format(variable_name, flow_name)
     inside_time_window = []
-    START_TIME = isoparse("2018-10-10T00+03:00")
+    START_TIME = isoparse("2018-10-06T00+03:00")
     END_TIME = isoparse("2018-10-27T00+03:00")
     for td in show_messages:
         utc_time = isoparse(td[utc_key])
