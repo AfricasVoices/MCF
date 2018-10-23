@@ -92,6 +92,7 @@ if __name__ == "__main__":
     if os.path.exists(prev_coda_path):
         # TODO: Modifying this line once the coding frame has been developed to include lots of Nones feels a bit
         # TODO: cumbersome. We could instead modify export_traced_data_iterable_to_coda to support a prev_f argument.
+        # TODO: Modify by adding code scheme keys once they are ready
         scheme_keys = {"Relevance": None, "Code 1": None, "Code 2": None, "Code 3": None, "Code 4": None}
         with open(coda_output_path, "w") as f, open(prev_coda_path, "r") as prev_f:
             TracedDataCodaIO.export_traced_data_iterable_to_coda_with_scheme(
