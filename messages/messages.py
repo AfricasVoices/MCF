@@ -4,7 +4,6 @@ import time
 import random
 
 import pytz
-from core_data_modules.cleaners import somali
 from core_data_modules.traced_data import Metadata
 from core_data_modules.traced_data.io import TracedDataJsonIO, TracedDataCodaIO, TracedDataCSVIO
 from core_data_modules.util import IOUtils
@@ -44,6 +43,13 @@ if __name__ == "__main__":
     csv_output_path = args.csv_output_path
     
     ICR_MESSAGES_COUNT = 200  # Number of messages to export in the ICR file
+    
+    # Convert date/time of messages to EAT
+    utc_key = "{} (Time) - {}".format(variable_name, flow_name)
+    eat_key = "{} (Time EAT) - {}".format(variable_name, flow_name)
+    inside_time_window = []
+    START_TIME = isoparse("2018-10-18T00+03:00")
+    END_TIME = isoparse("2018-10-27T00+03:00")
 
     # Load data from JSON file
     with open(json_input_path, "r") as f:
@@ -56,12 +62,7 @@ if __name__ == "__main__":
     show_message_key = "{} (Text) - {}".format(variable_name, flow_name)
     show_messages = [td for td in show_messages if show_message_key in td]
 
-    # Convert date/time of messages to EAT and filter out messages sent outside the project run period
-    utc_key = "{} (Time) - {}".format(variable_name, flow_name)
-    eat_key = "{} (Time EAT) - {}".format(variable_name, flow_name)
-    inside_time_window = []
-    START_TIME = isoparse("2018-10-06T00+03:00")
-    END_TIME = isoparse("2018-10-27T00+03:00")
+    # Filter out messages sent outside the project run period
     for td in show_messages:
         utc_time = isoparse(td[utc_key])
         eat_time = utc_time.astimezone(pytz.timezone("Africa/Nairobi")).isoformat()
