@@ -1,0 +1,12 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+coredatamodules = {editable = true, ref = "v0.7.0", git = "https://www.github.com/AfricasVoices/CoreDataModules"}
+
+[dev-packages]
+
+[requires]
+python_version = "3.6"
