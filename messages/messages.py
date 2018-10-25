@@ -102,11 +102,13 @@ if __name__ == "__main__":
 
     for td in messages_to_code:
         td_remapped = {}
-        for key, value in td:
-            td_remapped[keymap[key]] = value 
+        for key in td:
+            td_remapped[keymap[key]] = td[key] 
+
+    with open(coda_output_path, "w") as f:
+        TracedDataCodaIO.export_traced_data_iterable_to_coda(show_messages, show_message_key, f)
 
             
-
     # Randomly select some messages to export for ICR
     random.seed(0)
     random.shuffle(show_messages)
