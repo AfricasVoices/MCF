@@ -89,17 +89,23 @@ if __name__ == "__main__":
 
     # Output messages to Coda
     IOUtils.ensure_dirs_exist_for_file(coda_output_path)
-    if os.path.exists(prev_coda_path):
-        # TODO: Modifying this line once the coding frame has been developed to include lots of Nones feels a bit
-        # TODO: cumbersome. We could instead modify export_traced_data_iterable_to_coda to support a prev_f argument.
-        # TODO: Modify by adding code scheme keys once they are ready
-        scheme_keys = {"Relevance": None, "Code 1": None, "Code 2": None, "Code 3": None, "Code 4": None}
-        with open(coda_output_path, "w") as f, open(prev_coda_path, "r") as prev_f:
-            TracedDataCodaIO.export_traced_data_iterable_to_coda_with_scheme(
-                show_messages, show_message_key, scheme_keys, f, prev_f=prev_f)
-    else:
-        with open(coda_output_path, "w") as f:
-            TracedDataCodaIO.export_traced_data_iterable_to_coda(show_messages, show_message_key, f)
+    run_id_key = "{} (Run ID) - {}".format(variable_name, flow_name)
+    raw_text_key = "{} (Text) - {}".format(variable_name, flow_name)
+    time_key = "{} (Time) - {}".format(variable_name, flow_name)
+    keys = [run_id_key, raw_text_key, time_key]
+    keymap = {run_id_key:"MessageID", raw_text_key:"Text", time_key:"CreationDateTimeUTC"}
+
+    messages_to_code = []
+    for td in show_messages:
+        td.append_data({"Labels":[]},  Metadata(user, Metadata.get_call_location(), time.time()))
+        messages_to_code.append({key:td[key] for key in keys})
+
+    for td in messages_to_code:
+        td_remapped = {}
+        for key, value in td:
+            td_remapped[keymap[key]] = value 
+
+            
 
     # Randomly select some messages to export for ICR
     random.seed(0)
