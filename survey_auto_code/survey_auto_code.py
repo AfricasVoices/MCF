@@ -44,15 +44,15 @@ if __name__ == "__main__":
     cleaning_plan = [
         CleaningPlan("Gender (Text) - mcf_demog", "gender_clean", "Gender",
                      swahili.DemographicCleaner.clean_gender),
-        CleaningPlan("Location", "location_clean", "Location",
-                     swahili.DemographicCleaner.clean_nairobi_locations),
-        CleaningPlan("Education", "education_clean", "Education",
+        CleaningPlan("Location (Text) - mcf_demog", "location_clean", "Location",
                      None),
-        CleaningPlan("Age", "age_clean", "Age",
+        CleaningPlan("Education (Text) - mcf_demog", "education_clean", "Education",
+                     None),
+        CleaningPlan("Age (Text) - mcf_demog", "age_clean", "Age",
                      swahili.DemographicCleaner.clean_age),
-        CleaningPlan("Work", "work_clean", "Work",
+        CleaningPlan("Work (Text) - mcf_demog", "work_clean", "Work",
                      None),
-        CleaningPlan("Training", "training_clean", "Training",
+        CleaningPlan("Training (Text) - mcf_demog", "training_clean", "Training",
                      None),
     ]
 
@@ -75,50 +75,58 @@ if __name__ == "__main__":
                 missing[plan.raw_field] = Codes.TRUE_MISSING
         td.append_data(missing, Metadata(user, Metadata.get_call_location(), time.time()))
 
-    # Clean all responses
+    # Clean all responses, add MessageID and Labels
     for td in data:
         cleaned = dict()
+        message_id = dict()
+        labels = dict()
         for plan in cleaning_plan:
+            hash_object = hashlib.sha256()
+            hash_object.update(td[plan.raw_field].encode('utf-8'))
+            message_id_string = hash_object.hexdigest()
+            message_id_key = "{} MessageID".format(plan.raw_field)
+            message_id[message_id_key] = message_id_string
+            labels_key = "{} Labels".format(plan.raw_field)
+            labels[labels_key] = []
             if plan.cleaner is not None:
                 cleaned[plan.clean_field] = plan.cleaner(td[plan.raw_field])
+                labels[labels_key].append(cleaned[plan.clean_field])
         td.append_data(cleaned, Metadata(user, Metadata.get_call_location(), time.time()))
+        td.append_data(message_id, Metadata(user, Metadata.get_call_location(), time.time()))
+        td.append_data(labels, Metadata(user, Metadata.get_call_location(), time.time()))
+
 
     # Write json output
     IOUtils.ensure_dirs_exist_for_file(json_output_path)
     with open(json_output_path, "w") as f:
         TracedDataJsonIO.export_traced_data_iterable_to_json(data, f, pretty_print=True)
 
-    # Add message ID and Labels
-    for td in data:
-        message_id = {}
-        labels ={}
-        for plan in cleaning_plan:
-            if plan.raw_field in td:
-                hash_object = hashlib.sha256()
-                hash_object.update(td[plan.raw_field])
-                message_id_string = hash_object.digest()
-                message_id_key = "{} Message ID".format(plan.raw_field)
-                message_id[message_id_key] = message_id_string
-        
-                labels_key = "{} Labels".format(plan.raw_field)
-                labels[labels_key] = []
-        td.append_data(message_id, Metadata(user, Metadata.get_call_location(), time.time()))
-        td.append_data(labels, Metadata(user, Metadata.get_call_location(), time.time()))
-
-
     # TODO:remap message_id, labels, time to ingest by Coda v2
-    #keys = [run_id_key, raw_text_key, time_key]
-    #keymap = {run_id_key:"MessageID", raw_text_key:"Text", time_key:"CreationDateTimeUTC"}
+    keys = [run_id_key, raw_text_key, time_key]
+    keymap = {run_id_key:"MessageID", raw_text_key:"Text", time_key:"CreationDateTimeUTC"}
 
-    messages_to_code = []
+    messages_to_code = dict("messages":[])
     for td in data:
-        td.append_data({"Labels":[]},  Metadata(user, Metadata.get_call_location(), time.time()))
-        messages_to_code.append({key:td[key] for key in keys})
+        for plan in cleaning_plan:
+                output = dict()
+                output["Labels"] = td["{} Labels".format(plan.raw_field)]
+                ouptput["MessageID"] = td["{} MessageID".format(plan.raw_field)]
+                output["Text"] = td[plan.raw_field]
+                #output["CreationDateTimeUTC"] = 
+
+"""
+    for td in data:
+        for plan in cleaning_plan:
+
+            td.append_data({"Labels":[]},  Metadata(user, Metadata.get_call_location(), time.time()))
+            messages_to_code.append({key:td[key] for key in keys})
 
     for td in messages_to_code:
         td_remapped = {}
         for key in td:
-            td_remapped[keymap[key]] = td[key] 
+            pass
+            #td_remapped[keymap[key]] = td[key] 
+"""
 
     # Output for manual verification + coding
     IOUtils.ensure_dirs_exist(coded_output_path)
