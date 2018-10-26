@@ -4,7 +4,7 @@ import time
 from os import path
 import hashlib
 
-from core_data_modules.cleaners import swahili, Codes, PhoneCleaner
+from core_data_modules.cleaners import swahili, Codes
 from core_data_modules.traced_data import Metadata, TracedData
 from core_data_modules.traced_data.io import TracedDataJsonIO, TracedDataCodaIO
 from core_data_modules.util import IOUtils, PhoneNumberUuidTable
@@ -106,7 +106,7 @@ if __name__ == "__main__":
         td.append_data(labels, Metadata(user, Metadata.get_call_location(), time.time()))
 
 
-    # TODO: message_id, labels, time
+    # TODO:remap message_id, labels, time to ingest by Coda v2
     #keys = [run_id_key, raw_text_key, time_key]
     #keymap = {run_id_key:"MessageID", raw_text_key:"Text", time_key:"CreationDateTimeUTC"}
 
