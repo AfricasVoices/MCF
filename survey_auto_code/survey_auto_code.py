@@ -3,6 +3,8 @@ import os
 import time
 from os import path
 import hashlib
+from dateutil.parser import isoparse
+import jsonpickle
 
 from core_data_modules.cleaners import swahili, Codes
 from core_data_modules.traced_data import Metadata, TracedData
@@ -75,6 +77,10 @@ if __name__ == "__main__":
                 missing[plan.raw_field] = Codes.TRUE_MISSING
         td.append_data(missing, Metadata(user, Metadata.get_call_location(), time.time()))
 
+    # Exclude missing data
+    for plan in cleaning_plan:
+        data = [td for td in data if td[plan.raw_field] not in {Codes.TRUE_MISSING, Codes.SKIPPED, Codes.NOT_LOGICAL}]
+
     # Clean all responses, add MessageID and Labels
     for td in data:
         cleaned = dict()
@@ -95,49 +101,25 @@ if __name__ == "__main__":
         td.append_data(message_id, Metadata(user, Metadata.get_call_location(), time.time()))
         td.append_data(labels, Metadata(user, Metadata.get_call_location(), time.time()))
 
-
     # Write json output
     IOUtils.ensure_dirs_exist_for_file(json_output_path)
     with open(json_output_path, "w") as f:
         TracedDataJsonIO.export_traced_data_iterable_to_json(data, f, pretty_print=True)
-
-    # TODO:remap message_id, labels, time to ingest by Coda v2
-    keys = [run_id_key, raw_text_key, time_key]
-    keymap = {run_id_key:"MessageID", raw_text_key:"Text", time_key:"CreationDateTimeUTC"}
-
-    messages_to_code = dict("messages":[])
-    for td in data:
-        for plan in cleaning_plan:
-                output = dict()
-                output["Labels"] = td["{} Labels".format(plan.raw_field)]
-                ouptput["MessageID"] = td["{} MessageID".format(plan.raw_field)]
-                output["Text"] = td[plan.raw_field]
-                #output["CreationDateTimeUTC"] = 
-
-"""
-    for td in data:
-        for plan in cleaning_plan:
-
-            td.append_data({"Labels":[]},  Metadata(user, Metadata.get_call_location(), time.time()))
-            messages_to_code.append({key:td[key] for key in keys})
-
-    for td in messages_to_code:
-        td_remapped = {}
-        for key in td:
-            pass
-            #td_remapped[keymap[key]] = td[key] 
-"""
-
+    
     # Output for manual verification + coding
     IOUtils.ensure_dirs_exist(coded_output_path)
     for plan in cleaning_plan:
-        coded_output_file_path = path.join(coded_output_path, "{}.csv".format(plan.coda_name))
-        prev_coded_output_file_path = path.join(prev_coded_path, "{}_coded.csv".format(plan.coda_name))
-
-        if os.path.exists(prev_coded_output_file_path):
-            with open(coded_output_file_path, "w") as f, open(prev_coded_output_file_path, "r") as prev_f:
-                TracedDataCodaIO.export_traced_data_iterable_to_coda_with_scheme(
-                    data, plan.raw_field, {plan.coda_name: plan.clean_field}, f, prev_f)
-        else:
-             with open(coded_output_file_path, "w") as f:
-                 pass
+        coded_output_file_path = path.join(coded_output_path, "{}.json".format(plan.coda_name))
+        messages_to_code = {"messages":[]}
+        for td in data:
+                output = dict()        
+                output["Labels"] = td["{} Labels".format(plan.raw_field)]
+                output["MessageID"] = td["{} MessageID".format(plan.raw_field)]
+                output["Text"] = td[plan.raw_field]
+                output["CreationDateTimeUTC"] = isoparse(td["{} (Time) - {}".format(plan.coda_name, "mcf_demog")]).isoformat()
+                messages_to_code["messages"].append(output)
+        with open(coded_output_file_path, "w") as f:
+            jsonpickle.set_encoder_options("json", sort_keys=True)
+            f.write(jsonpickle.dumps(messages_to_code))
+            f.write("\n")
+            
