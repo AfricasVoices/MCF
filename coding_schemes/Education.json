@@ -1,37 +1,37 @@
 {
   "Codes": [
     {
-      "CodeID": "code-c1d2b1d154ba", 
+      "CodeID": "code-bcf810c699a5", 
       "DisplayText": "Have never attended school", 
       "NumericValue": 0, 
       "VisibleInCoda": true
     }, 
     {
-      "CodeID": "code-b78dcd59e709", 
+      "CodeID": "code-022a63337671", 
       "DisplayText": "Did not complete primary", 
       "NumericValue": 1, 
       "VisibleInCoda": true
     }, 
     {
-      "CodeID": "code-dbdde9eafeb9", 
+      "CodeID": "code-07a23041ba8d", 
       "DisplayText": "Primary completed", 
       "NumericValue": 2, 
       "VisibleInCoda": true
     }, 
     {
-      "CodeID": "code-affe7ab51b59", 
+      "CodeID": "code-3cb6fb4653ea", 
       "DisplayText": "Secondary completed", 
       "NumericValue": 3, 
       "VisibleInCoda": true
     }, 
     {
-      "CodeID": "code-e2d04a075de3", 
+      "CodeID": "code-ab3a3a8ad8f9", 
       "DisplayText": "College/Vocational", 
       "NumericValue": 4, 
       "VisibleInCoda": true
     }, 
     {
-      "CodeID": "code-5d04f6d38afc", 
+      "CodeID": "code-89a498d47e4b", 
       "DisplayText": "University", 
       "NumericValue": 5, 
       "VisibleInCoda": true
@@ -51,9 +51,17 @@
       "DisplayText": "NC (not coded)", 
       "NumericValue": -30, 
       "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-WS-adb25603b7af", 
+      "CodeType": "Control", 
+      "ControlCode": "WS", 
+      "DisplayText": "WS (wrong scheme)", 
+      "NumericValue": -100, 
+      "VisibleInCoda": true
     }
   ], 
   "Name": "Education", 
-  "SchemeID": "Scheme-7e2201fea221", 
+  "SchemeID": "Scheme-a57ce8d15245", 
   "Version": "0.0.0.1"
 }
