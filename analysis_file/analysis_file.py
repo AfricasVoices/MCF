@@ -56,6 +56,7 @@ if __name__ == "__main__":
 
     textit_consent_withdrawn_key = "mobilisation_consent_complete"
     avf_consent_withdrawn_key = "withdrawn_consent"
+    source_flow_key = "source_flow"
 
     # Load cleaned and coded message/survey data
     with open(data_input_path, "r") as f:
@@ -66,42 +67,40 @@ if __name__ == "__main__":
     for td in data:
         AnalysisKeys.set_analysis_keys(user, td)
         AnalysisKeys.set_matrix_keys(
-            user, td, show_keys, "S07E01_Humanitarian_Priorities (Text) - esc4jmcna_activation_coded",
-            "humanitarian_priorities"
+            user, td, show_keys, "Employment_Idea (Text) - mcf_activation_coded",
+            "work_opportunities"
         )
     show_keys = list(show_keys)
     show_keys.sort()
 
-    equal_keys = ["UID", "operator"]
+    equal_keys = ["UID", source_flow_key]
     equal_keys.extend(demog_keys)
-    equal_keys.extend(evaluation_keys)
-    concat_keys = ["humanitarian_priorities_raw"]
+    concat_keys = ["employment_idea_raw"]
     matrix_keys = show_keys
     bool_keys = [
         avf_consent_withdrawn_key,
 
-        "bulk_sms",
-        "sms_ad",
-        "radio_promo",
-        "radio_show",
-        "non_logical_time"
+        #,
+        #"bulk_sms",
+        #"sms_ad",
+        #"radio_promo",
+        #"radio_show",
+        #"non_logical_time"
     ]
 
     # Export to CSV
-    export_keys = ["UID", "operator"]
+    export_keys = ["UID", "source_flow"]
     export_keys.extend(bool_keys)
     export_keys.extend(show_keys)
-    export_keys.append("humanitarian_priorities_raw")
+    export_keys.append("employment_idea_raw")
     export_keys.extend(demog_keys)
-    export_keys.extend(evaluation_keys)
 
     # Set consent withdrawn based on presence of data coded as "stop"
     ConsentUtils.determine_consent_withdrawn(user, data, export_keys, avf_consent_withdrawn_key)
 
     # Set consent withdrawn based on auto-categorisation in Rapid Pro
     for td in data:
-        if td.get(textit
-_consent_withdrawn_key) == "yes":  # Not using Codes.YES because this is from Rapid Pro
+        if td.get(textit_consent_withdrawn_key) == "yes":  # Not using Codes.YES because this is from Rapid Pro
             td.append_data({avf_consent_withdrawn_key: Codes.TRUE}, Metadata(user, Metadata.get_call_location(), time.time()))
 
     for td in data:
@@ -132,4 +131,4 @@ _consent_withdrawn_key) == "yes":  # Not using Codes.YES because this is from Ra
 
     # Export JSON
     with open(json_output_path, "w") as f:
-TracedDataJsonIO.export_traced_data_iterable_to_json(folded_data, f, pretty_print=True)
+        TracedDataJsonIO.export_traced_data_iterable_to_json(folded_data, f, pretty_print=True)
