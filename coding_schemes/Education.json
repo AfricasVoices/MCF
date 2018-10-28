@@ -1,0 +1,59 @@
+{
+  "Codes": [
+    {
+      "CodeID": "code-c1d2b1d154ba", 
+      "DisplayText": "Have never attended school", 
+      "NumericValue": 0, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-b78dcd59e709", 
+      "DisplayText": "Did not complete primary", 
+      "NumericValue": 1, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-dbdde9eafeb9", 
+      "DisplayText": "Primary completed", 
+      "NumericValue": 2, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-affe7ab51b59", 
+      "DisplayText": "Secondary completed", 
+      "NumericValue": 3, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-e2d04a075de3", 
+      "DisplayText": "College/Vocational", 
+      "NumericValue": 4, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-5d04f6d38afc", 
+      "DisplayText": "University", 
+      "NumericValue": 5, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-NA-f93d3eb7", 
+      "CodeType": "Control", 
+      "ControlCode": "NA", 
+      "DisplayText": "NA (missing)", 
+      "NumericValue": -10, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-NC-42f1d983", 
+      "CodeType": "Control", 
+      "ControlCode": "NC", 
+      "DisplayText": "NC (not coded)", 
+      "NumericValue": -30, 
+      "VisibleInCoda": true
+    }
+  ], 
+  "Name": "Education", 
+  "SchemeID": "Scheme-7e2201fea221", 
+  "Version": "0.0.0.1"
+}

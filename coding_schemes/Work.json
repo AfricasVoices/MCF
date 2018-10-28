@@ -1,0 +1,89 @@
+{
+  "Codes": [
+    {
+      "CodeID": "code-0757e787f925", 
+      "DisplayText": "Volunteer work", 
+      "NumericValue": 0, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-d93ca8cc7c99", 
+      "DisplayText": "Unemployed", 
+      "NumericValue": 1, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-6c2c4ef95867", 
+      "DisplayText": "Business/Self employed/Freelance", 
+      "NumericValue": 2, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-8584cbe93253", 
+      "DisplayText": "Casual work", 
+      "NumericValue": 3, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-7d5c10b4caac", 
+      "DisplayText": "Elementary occupation", 
+      "NumericValue": 4, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-a852d86c0722", 
+      "DisplayText": "Formal employment", 
+      "NumericValue": 5, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-4b2e42945f8b", 
+      "DisplayText": "Creative", 
+      "NumericValue": 6, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-674009ec32a7", 
+      "DisplayText": "Artisan", 
+      "NumericValue": 7, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-3822f94c622e", 
+      "DisplayText": "Student", 
+      "NumericValue": 8, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-e217332b42ef", 
+      "DisplayText": "Sports", 
+      "NumericValue": 9, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-3efab6ae234e", 
+      "DisplayText": "Not relevant", 
+      "NumericValue": 10, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-NA-f93d3eb7", 
+      "CodeType": "Control", 
+      "ControlCode": "NA", 
+      "DisplayText": "NA (missing)", 
+      "NumericValue": -10, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-NC-42f1d983", 
+      "CodeType": "Control", 
+      "ControlCode": "NC", 
+      "DisplayText": "NC (not coded)", 
+      "NumericValue": -30, 
+      "VisibleInCoda": true
+    }
+  ], 
+  "Name": "Work", 
+  "SchemeID": "Scheme-9922a04be0d1", 
+  "Version": "0.0.0.1"
+}
