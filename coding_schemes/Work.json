@@ -1,0 +1,97 @@
+{
+  "Codes": [
+    {
+      "CodeID": "code-57fa2574e3b6", 
+      "DisplayText": "Volunteer work", 
+      "NumericValue": 0, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-ba113a3ef785", 
+      "DisplayText": "Unemployed", 
+      "NumericValue": 1, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-8fc5df110088", 
+      "DisplayText": "Business/Self employed/Freelance", 
+      "NumericValue": 2, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-82fe1140d878", 
+      "DisplayText": "Casual work", 
+      "NumericValue": 3, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-7d7a4d642698", 
+      "DisplayText": "Elementary occupation", 
+      "NumericValue": 4, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-51955f9cc1af", 
+      "DisplayText": "Formal employment", 
+      "NumericValue": 5, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-7b9919e0920e", 
+      "DisplayText": "Creative", 
+      "NumericValue": 6, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-74d519de83a1", 
+      "DisplayText": "Artisan", 
+      "NumericValue": 7, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-a946bf001e3c", 
+      "DisplayText": "Student", 
+      "NumericValue": 8, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-48ce333e820a", 
+      "DisplayText": "Sports", 
+      "NumericValue": 9, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-cf35b0416163", 
+      "DisplayText": "Not relevant", 
+      "NumericValue": 10, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-NA-f93d3eb7", 
+      "CodeType": "Control", 
+      "ControlCode": "NA", 
+      "DisplayText": "NA (missing)", 
+      "NumericValue": -10, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-NC-42f1d983", 
+      "CodeType": "Control", 
+      "ControlCode": "NC", 
+      "DisplayText": "NC (not coded)", 
+      "NumericValue": -30, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-WS-adb25603b7af", 
+      "CodeType": "Control", 
+      "ControlCode": "WS", 
+      "DisplayText": "WS (wrong scheme)", 
+      "NumericValue": -100, 
+      "VisibleInCoda": true
+    }
+  ], 
+  "Name": "Work", 
+  "SchemeID": "Scheme-12be1d8f34eb", 
+  "Version": "0.0.0.1"
+}

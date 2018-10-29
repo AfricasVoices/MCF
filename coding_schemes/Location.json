@@ -1,0 +1,325 @@
+{
+  "Codes": [
+    {
+      "CodeID": "code-3d3e720ce149", 
+      "DisplayText": "Outside of Nairobi?", 
+      "NumericValue": 0, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-367a7a6ba29e", 
+      "DisplayText": "Langata", 
+      "NumericValue": 1, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-9012c2380e59", 
+      "DisplayText": "Kibera", 
+      "NumericValue": 2, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-5a91445330f1", 
+      "DisplayText": "Olympic estate (Kibera)", 
+      "NumericValue": 3, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-b973ee89ac96", 
+      "DisplayText": "Mathare", 
+      "NumericValue": 4, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-c552dd98d7c8", 
+      "DisplayText": "Jericho", 
+      "NumericValue": 5, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-263dace5b919", 
+      "DisplayText": "Kayole", 
+      "NumericValue": 6, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-091533efdc1f", 
+      "DisplayText": "Donholm", 
+      "NumericValue": 7, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-04592de9641f", 
+      "DisplayText": "Kiambu county", 
+      "NumericValue": 8, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-0604049412fd", 
+      "DisplayText": "Jamhuri", 
+      "NumericValue": 9, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-b3989cbcbf5c", 
+      "DisplayText": "Kahawa west", 
+      "NumericValue": 10, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-78e743ebda09", 
+      "DisplayText": "Westlands", 
+      "NumericValue": 11, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-8f2a228aba06", 
+      "DisplayText": "Raira vilage", 
+      "NumericValue": 12, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-155b76f01f5e", 
+      "DisplayText": "Kabete", 
+      "NumericValue": 13, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-0c365b9e820e", 
+      "DisplayText": "Makadara", 
+      "NumericValue": 14, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-853b342f3e5d", 
+      "DisplayText": "South B", 
+      "NumericValue": 15, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-a17a673f2992", 
+      "DisplayText": "Kasarani", 
+      "NumericValue": 16, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-d29c4f2db504", 
+      "DisplayText": "Roysambu", 
+      "NumericValue": 17, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-128f1a94ca8e", 
+      "DisplayText": "Chiromo", 
+      "NumericValue": 18, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-72a9d530df3d", 
+      "DisplayText": "Sodom", 
+      "NumericValue": 19, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-15831ab8e369", 
+      "DisplayText": "Embakasi", 
+      "NumericValue": 20, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-95c443105cd3", 
+      "DisplayText": "Kariobangi", 
+      "NumericValue": 21, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-871548df3d94", 
+      "DisplayText": "Satellite", 
+      "NumericValue": 22, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-c8c4c3dde483", 
+      "DisplayText": "Dagoretti", 
+      "NumericValue": 23, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-32149ea0b975", 
+      "DisplayText": "Buruburu", 
+      "NumericValue": 24, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-b392ec0918e5", 
+      "DisplayText": "Ongata Rongai", 
+      "NumericValue": 25, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-a8aad48656bb", 
+      "DisplayText": "Athi River", 
+      "NumericValue": 26, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-a0c644ddb969", 
+      "DisplayText": "Ziwani", 
+      "NumericValue": 27, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-36e5212c5835", 
+      "DisplayText": "Kahawa wendani", 
+      "NumericValue": 28, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-691907a5838d", 
+      "DisplayText": "Kangemi", 
+      "NumericValue": 29, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-78f52c91e663", 
+      "DisplayText": "Githurai", 
+      "NumericValue": 30, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-4d4c2923d188", 
+      "DisplayText": "Ruaraka", 
+      "NumericValue": 31, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-4f00f37f156d", 
+      "DisplayText": "Korogocho", 
+      "NumericValue": 32, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-c4aca1fc33a4", 
+      "DisplayText": "Umoja", 
+      "NumericValue": 33, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-6690dd25f944", 
+      "DisplayText": "Mlolongo", 
+      "NumericValue": 34, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-9708176d7550", 
+      "DisplayText": "Kiserian", 
+      "NumericValue": 35, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-d6ee882dab2e", 
+      "DisplayText": "Kajiado county", 
+      "NumericValue": 36, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-2b67bd223678", 
+      "DisplayText": "Shauri moyo", 
+      "NumericValue": 37, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-279ff4f856d3", 
+      "DisplayText": "Sinai", 
+      "NumericValue": 38, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-feee017e209e", 
+      "DisplayText": "Bahati", 
+      "NumericValue": 39, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-3a6f8c410603", 
+      "DisplayText": "Maringo", 
+      "NumericValue": 40, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-4604b75fb37a", 
+      "DisplayText": "Mwiki", 
+      "NumericValue": 41, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-57f1bb7b2579", 
+      "DisplayText": "Muranga county", 
+      "NumericValue": 42, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-05f3aea08302", 
+      "DisplayText": "Machakos county", 
+      "NumericValue": 43, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-574749bece19", 
+      "DisplayText": "Pangani", 
+      "NumericValue": 44, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-b356dbed051b", 
+      "DisplayText": "Saika", 
+      "NumericValue": 45, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-a38ce0361cf3", 
+      "DisplayText": "Utawala", 
+      "NumericValue": 46, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-b2dbef6b55a5", 
+      "DisplayText": "Other", 
+      "NumericValue": 47, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-3477bc902184", 
+      "DisplayText": "Nairobi (general)", 
+      "NumericValue": 48, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-NA-f93d3eb7", 
+      "CodeType": "Control", 
+      "ControlCode": "NA", 
+      "DisplayText": "NA (missing)", 
+      "NumericValue": -10, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-NC-42f1d983", 
+      "CodeType": "Control", 
+      "ControlCode": "NC", 
+      "DisplayText": "NC (not coded)", 
+      "NumericValue": -30, 
+      "VisibleInCoda": true
+    }, 
+    {
+      "CodeID": "code-WS-adb25603b7af", 
+      "CodeType": "Control", 
+      "ControlCode": "WS", 
+      "DisplayText": "WS (wrong scheme)", 
+      "NumericValue": -100, 
+      "VisibleInCoda": true
+    }
+  ], 
+  "Name": "Location", 
+  "SchemeID": "Scheme-59ad3a2d3086", 
+  "Version": "0.0.0.1"
+}
