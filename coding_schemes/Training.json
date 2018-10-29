@@ -1,22 +1,25 @@
-{
+[{
   "Codes": [
     {
       "CodeID": "code-065816912bdf", 
       "DisplayText": "Not (finished studies)", 
       "NumericValue": 0, 
-      "VisibleInCoda": true
+      "VisibleInCoda": true,
+      "Shortcut": "x"
     }, 
     {
       "CodeID": "code-0b66589cf8a1", 
       "DisplayText": "No", 
       "NumericValue": 1, 
-      "VisibleInCoda": true
+      "VisibleInCoda": true,
+      "Shortcut": "n"
     }, 
     {
       "CodeID": "code-8c68907a6b54", 
       "DisplayText": "Yes", 
       "NumericValue": 2, 
-      "VisibleInCoda": true
+      "VisibleInCoda": true,
+      "Shortcut": "y"
     }, 
     {
       "CodeID": "code-NA-f93d3eb7", 
@@ -32,7 +35,8 @@
       "ControlCode": "NC", 
       "DisplayText": "NC (not coded)", 
       "NumericValue": -30, 
-      "VisibleInCoda": true
+      "VisibleInCoda": true,
+      "Shortcut": "z"
     }, 
     {
       "CodeID": "code-WS-adb25603b7af", 
@@ -46,4 +50,4 @@
   "Name": "Training", 
   "SchemeID": "Scheme-8f0794281bb1", 
   "Version": "0.0.0.1"
-}
+}]
