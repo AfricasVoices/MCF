@@ -110,14 +110,17 @@ if __name__ == "__main__":
     IOUtils.ensure_dirs_exist(coded_output_path)
     for plan in cleaning_plan:
         coded_output_file_path = path.join(coded_output_path, "{}.json".format(plan.coda_name))
-        messages_to_code = {"messages":[]}
+        message_ids = list()
+        messages_to_code = list()
         for td in data:
                 output = dict()        
                 output["Labels"] = td["{} Labels".format(plan.raw_field)]
                 output["MessageID"] = td["{} MessageID".format(plan.raw_field)]
                 output["Text"] = td[plan.raw_field]
                 output["CreationDateTimeUTC"] = isoparse(td["{} (Time) - {}".format(plan.coda_name, "mcf_demog")]).isoformat()
-                messages_to_code["messages"].append(output)
+                if output["MessageID"] not in message_ids:
+                    messages_to_code.append(output)
+                    message_ids.append(output["MessageID"])
         with open(coded_output_file_path, "w") as f:
             jsonpickle.set_encoder_options("json", sort_keys=True)
             f.write(jsonpickle.dumps(messages_to_code))
