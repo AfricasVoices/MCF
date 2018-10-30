@@ -40,7 +40,8 @@ if __name__ == "__main__":
     coded_output_path = args.coded_output_path
     age_scheme_path = args.age_scheme_path
 
-    # TODO: Read in all CodeIDs and SchemeIDs from scheme files
+     # TODO: Read in all codes and schemes from scheme file
+     # TODO: move to CoreDataModules
     CODE_IDS = {"Scheme-12cb6f95": {"female": "code-86a4602c", "male": "code-63dcde9a", "NA": "code-NA-3498451d", "NS": "code-NS-5334289d",
      "NC": "code-NC-11d6bb91", "NR": "code-NR-03dd5d73"}, "Scheme-22b92dda5589": {}}
 
