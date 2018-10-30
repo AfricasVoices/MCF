@@ -1,0 +1,397 @@
+{
+  "Codes": [
+    {
+      "CodeID": "code-467571063366",
+      "DisplayText": "10",
+      "NumericValue": 0,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-7bb62b684a6a",
+      "DisplayText": "11",
+      "NumericValue": 1,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-82bf25c8786b",
+      "DisplayText": "12",
+      "NumericValue": 2,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-5d60e8fb8cdb",
+      "DisplayText": "13",
+      "NumericValue": 3,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-54b49aafb7e8",
+      "DisplayText": "14",
+      "NumericValue": 4,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-9b5d1d4e52b3",
+      "DisplayText": "15",
+      "NumericValue": 5,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-563829509260",
+      "DisplayText": "16",
+      "NumericValue": 6,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-062c91201eaa",
+      "DisplayText": "17",
+      "NumericValue": 7,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-675667dbde06",
+      "DisplayText": "18",
+      "NumericValue": 8,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-08ea1640fa63",
+      "DisplayText": "19",
+      "NumericValue": 9,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-8a06c2c2ad3a",
+      "DisplayText": "20",
+      "NumericValue": 10,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-0f4ba962123d",
+      "DisplayText": "21",
+      "NumericValue": 11,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-4a66fd7e545b",
+      "DisplayText": "22",
+      "NumericValue": 12,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-e415e48b980e",
+      "DisplayText": "23",
+      "NumericValue": 13,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-d57cf46d77f6",
+      "DisplayText": "24",
+      "NumericValue": 14,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-def1257ebca2",
+      "DisplayText": "25",
+      "NumericValue": 15,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-baef6fbd2fd9",
+      "DisplayText": "26",
+      "NumericValue": 16,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-8aa86a297e4f",
+      "DisplayText": "27",
+      "NumericValue": 17,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-9c14f5ae2d1b",
+      "DisplayText": "28",
+      "NumericValue": 18,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-06bbc6daddd6",
+      "DisplayText": "29",
+      "NumericValue": 19,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-af2b3f1dc7d7",
+      "DisplayText": "30",
+      "NumericValue": 20,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-c2cab0d889ba",
+      "DisplayText": "31",
+      "NumericValue": 21,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-e90c0bd853d2",
+      "DisplayText": "32",
+      "NumericValue": 22,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-2c18b507b42f",
+      "DisplayText": "33",
+      "NumericValue": 23,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-592dab4e6c89",
+      "DisplayText": "34",
+      "NumericValue": 24,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-3ad5f2bb36b5",
+      "DisplayText": "35",
+      "NumericValue": 25,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-7969388445bc",
+      "DisplayText": "36",
+      "NumericValue": 26,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-71ef587dcd76",
+      "DisplayText": "37",
+      "NumericValue": 27,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-75ef7d858573",
+      "DisplayText": "38",
+      "NumericValue": 28,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-ae945b8e4647",
+      "DisplayText": "39",
+      "NumericValue": 29,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-55bc282f3b70",
+      "DisplayText": "40",
+      "NumericValue": 30,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-d3ae3a3bedc7",
+      "DisplayText": "41",
+      "NumericValue": 31,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-fe5752b7e6b5",
+      "DisplayText": "42",
+      "NumericValue": 32,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-db26da38ed61",
+      "DisplayText": "43",
+      "NumericValue": 33,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-3c98f3dd468e",
+      "DisplayText": "44",
+      "NumericValue": 34,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-db7b19063fb2",
+      "DisplayText": "45",
+      "NumericValue": 35,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-6ae7e1fb1751",
+      "DisplayText": "46",
+      "NumericValue": 36,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-4f86f54728ba",
+      "DisplayText": "47",
+      "NumericValue": 37,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-3b98f7e96b49",
+      "DisplayText": "48",
+      "NumericValue": 38,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-cd2865691a70",
+      "DisplayText": "49",
+      "NumericValue": 39,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-aeb400f26e52",
+      "DisplayText": "50",
+      "NumericValue": 40,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-c36db774ed2d",
+      "DisplayText": "51",
+      "NumericValue": 41,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-0eac716e4cc7",
+      "DisplayText": "52",
+      "NumericValue": 42,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-b13b13d1d3fe",
+      "DisplayText": "53",
+      "NumericValue": 43,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-8b3c39f70198",
+      "DisplayText": "54",
+      "NumericValue": 44,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-cd7249241554",
+      "DisplayText": "55",
+      "NumericValue": 45,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-a6cf3c8f70af",
+      "DisplayText": "56",
+      "NumericValue": 46,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-7f9a1465d99c",
+      "DisplayText": "57",
+      "NumericValue": 47,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-bde2be8ab0da",
+      "DisplayText": "58",
+      "NumericValue": 48,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-c1f0ae0d5ff3",
+      "DisplayText": "59",
+      "NumericValue": 49,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-849649de55f9",
+      "DisplayText": "60",
+      "NumericValue": 50,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-d0a9d4603e69",
+      "DisplayText": "61",
+      "NumericValue": 51,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-11d9708430ce",
+      "DisplayText": "62",
+      "NumericValue": 52,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-e7de6e84e2aa",
+      "DisplayText": "63",
+      "NumericValue": 53,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-3069402b3c43",
+      "DisplayText": "64",
+      "NumericValue": 54,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-dd35ba9ee041",
+      "DisplayText": "65",
+      "NumericValue": 55,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-ee339bdbe04c",
+      "DisplayText": "66",
+      "NumericValue": 56,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-67928b1894fc",
+      "DisplayText": "67",
+      "NumericValue": 57,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-68a15fee9988",
+      "DisplayText": "68",
+      "NumericValue": 58,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-5f6fba023d8f",
+      "DisplayText": "69",
+      "NumericValue": 59,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-298e7cb29900",
+      "DisplayText": "70",
+      "NumericValue": 60,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-NA-f93d3eb7",
+      "CodeType": "Control",
+      "ControlCode": "NA",
+      "DisplayText": "NA (missing)",
+      "NumericValue": -10,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-NC-42f1d983",
+      "CodeType": "Control",
+      "ControlCode": "NC",
+      "DisplayText": "NC (not coded)",
+      "NumericValue": -30,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-WS-adb25603b7af",
+      "CodeType": "Control",
+      "ControlCode": "WS",
+      "DisplayText": "WS (wrong scheme)",
+      "NumericValue": -100,
+      "VisibleInCoda": true
+    }
+  ],
+  "Name": "Age",
+  "SchemeID": "Scheme-38460800af16",
+  "Version": "0.0.0.1"
+}
