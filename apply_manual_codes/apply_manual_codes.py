@@ -2,7 +2,7 @@ import argparse
 import time
 from os import path
 import json
-from time import isoparse
+from dateutil.parser import isoparse
 
 from core_data_modules.cleaners import CharacterCleaner, Codes
 from core_data_modules.cleaners.codes import SomaliaCodes
@@ -46,14 +46,15 @@ class TracedDataCoda2IO(object):
         # Apply the labels from Coda to each TracedData item in data
         for td in data:
             for key_of_coded, scheme in scheme_keys.items():
-                labels = coda_dataset.get(td[data_message_id_key], dict()).get(scheme["SchemeID"])
+                labels = coda_dataset.get(td[data_message_id_key], dict()).get(scheme[0]["SchemeID"])
                 if labels is None:
                     not_reviewed_code_id = \
-                        [code["CodeID"] for code in scheme["Codes"] if code["CodeID"].startswith("code-NR")][0]
+                        [code["CodeID"] for code in scheme[0]["Codes"] if "CodeType" in code and code["CodeType"] == "Control"] 
+                        # TODO: issue for having CodeType key for every code
                     td.append_data(
                         {key_of_coded: {
                             "CodeID": not_reviewed_code_id,
-                            "SchemeID": scheme["SchemeID"]
+                            "SchemeID": scheme[0]["SchemeID"]
                             # TODO: Set the other keys which label would have had here had they come from Coda?
                         }},
                         Metadata(user, Metadata.get_call_location(), time.time())
@@ -84,20 +85,21 @@ if __name__ == "__main__":
     json_input_path = args.json_input_path
     coded_input_path = args.coded_input_path
     json_output_path = args.json_output_path
-    interface_output_dir = args.interface_output_dir
+    scheme_input_path = args.scheme_input_path
 
     class MergePlan:
-        def __init__(self, coda_name, coded_name):
+        def __init__(self, raw_field, coda_name, coded_name):
+            self.raw_field = raw_field
             self.coda_name = coda_name
             self.coded_name = coded_name
 
     merge_plan = [
-        MergePlan("Gender", "Gender_Coded"),
-        MergePlan("Location", "Location_Coded"),
-        MergePlan("Education", "Education_Coded"),
-        MergePlan("Training", "Training_Coded"),
-        MergePlan("Work", "Work_Coded"),
-        MergePlan("Age", "Age_Coded"),
+        MergePlan("Gender (Text) - mcf_demog", "Gender", "Gender_Coded"),
+        MergePlan("Location (Text) - mcf_demog", "Location", "Location_Coded"),
+        MergePlan("Education (Text) - mcf_demog", "Education", "Education_Coded"),
+        MergePlan("Training (Text) - mcf_demog", "Training", "Training_Coded"),
+        MergePlan("Work (Text) - mcf_demog", "Work", "Work_Coded"),
+        MergePlan("Age (Text) - mcf_demog", "Age", "Age_Coded"),
     ]
 
     # Load data from JSON file
@@ -117,13 +119,13 @@ if __name__ == "__main__":
                 )
             continue
 
-        scheme_file_path = path.join(scheme_file_path, "{}.json").format(plan.coda_name)
+        scheme_file_path = path.join(scheme_input_path, "{}.json").format(plan.coda_name)
         with open(scheme_file_path, "r") as f:
             coding_scheme = json.load(f)
 
         with open(coda_file_path, "r") as f:
             TracedDataCoda2IO.import_coda_to_traced_data_iterable(
-                user, data, "MessageID", {plan.coded_name: coding_scheme}, f)
+                user, data, "{} MessageID".format(plan.raw_field), {plan.coded_name: coding_scheme}, f)
 
     # Write coded data back out to disk
     IOUtils.ensure_dirs_exist_for_file(json_output_path)
