@@ -5,6 +5,7 @@ from os import path
 import hashlib
 from dateutil.parser import isoparse
 import jsonpickle
+import datetime
 
 from core_data_modules.cleaners import swahili, Codes
 from core_data_modules.traced_data import Metadata, TracedData
@@ -107,9 +108,10 @@ if __name__ == "__main__":
                 code_id = CODE_IDS[plan.scheme_id][cleaned[plan.clean_field]]
                 origin = {"OriginType":"Automatic","OriginID": "https://github.com/AfricasVoices/Project-MCF/pull/7", "Name": "survey_auto_code", "Metadata": {}}
                 label["Checked"] = False
+                label["Confidence"] = 0
                 label["SchemeID"] = plan.scheme_id
                 label["CodeID"] = code_id
-                label["DateTimeUTC"] = time.time()
+                label["DateTimeUTC"] = datetime.datetime.utcnow().isoformat()
                 label["Origin"] = origin
                 labels[labels_key].append(label)
         td.append_data(cleaned, Metadata(user, Metadata.get_call_location(), time.time()))
