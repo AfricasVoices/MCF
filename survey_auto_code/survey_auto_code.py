@@ -6,6 +6,7 @@ import hashlib
 from dateutil.parser import isoparse
 import jsonpickle
 import datetime
+import json
 
 from core_data_modules.cleaners import swahili, Codes
 from core_data_modules.traced_data import Metadata, TracedData
@@ -28,6 +29,7 @@ if __name__ == "__main__":
                         help="Path to a JSON file to write processed TracedData messages to")
     parser.add_argument("coded_output_path", metavar="coding-output-path",
                         help="Directory to write coding files to")
+    parser.add_argument("age_scheme_path")
 
     args = parser.parse_args()
     user = args.user
@@ -36,10 +38,24 @@ if __name__ == "__main__":
     phone_uuid_table_path = args.phone_uuid_table_path
     json_output_path = args.json_output_path
     coded_output_path = args.coded_output_path
+    age_scheme_path = args.age_scheme_path
 
-    # TODO: Move to CoreModules
+     # TODO: Move to CoreModules
     CODE_IDS = {"Scheme-12cb6f95": {"female": "code-86a4602c", "male": "code-63dcde9a", "NA": "code-NA-3498451d", "NS": "code-NS-5334289d",
-     "NC": "code-NC-11d6bb91", "NR": "code-NR-03dd5d73"}}
+     "NC": "code-NC-11d6bb91", "NR": "code-NR-03dd5d73"}, "Scheme-38460800af16": {}}
+
+    CONTROL_CODES = ["NA", "NC", "WS"]
+
+    with open(age_scheme_path, "r") as f:
+        age_scheme = json.load(f)
+
+    age_codes = age_scheme["Codes"]
+    for code in age_codes:
+            if "ControlCode" in code:
+                code_text = code["ControlCode"]
+            else:
+                code_text = code["DisplayText"]
+            CODE_IDS["Scheme-38460800af16"][code_text] = code["CodeID"]            
 
     class CleaningPlan:
         def __init__(self, raw_field, clean_field, coda_name, cleaner, scheme_id):
@@ -57,9 +73,8 @@ if __name__ == "__main__":
         CleaningPlan("Education (Text) - mcf_demog", "education_clean", "Education",
                      None, "Scheme-a57ce8d15245"),
         CleaningPlan("Age (Text) - mcf_demog", "age_clean", "Age",
-                     # TODO:: set age cleaner once coding scheme is ready
-                     #swahili.DemographicCleaner.clean_age),
-                     None, None),
+                     swahili.DemographicCleaner.clean_age,
+                    "Scheme-38460800af16"),
         CleaningPlan("Work (Text) - mcf_demog", "work_clean", "Work", None,
                      "Scheme-12be1d8f34eb"),
         CleaningPlan("Training (Text) - mcf_demog", "training_clean", "Training",
@@ -104,7 +119,7 @@ if __name__ == "__main__":
             labels[labels_key] = []
             if plan.cleaner is not None:
                 label = dict()
-                cleaned[plan.clean_field] = plan.cleaner(td[plan.raw_field])
+                cleaned[plan.clean_field] = str(plan.cleaner(td[plan.raw_field]))
                 code_id = CODE_IDS[plan.scheme_id][cleaned[plan.clean_field]]
                 origin = {"OriginType":"Automatic","OriginID": "https://github.com/AfricasVoices/Project-MCF/pull/7", "Name": "survey_auto_code", "Metadata": {}}
                 label["Checked"] = False
@@ -133,7 +148,7 @@ if __name__ == "__main__":
                 output = dict()        
                 output["Labels"] = td["{} Labels".format(plan.raw_field)]
                 output["MessageID"] = td["{} MessageID".format(plan.raw_field)]
-                output["Text"] = td[plan.raw_field]
+                output["Text"] = str(td[plan.raw_field])
                 output["CreationDateTimeUTC"] = isoparse(td["{} (Time) - {}".format(plan.coda_name, "mcf_demog")]).isoformat()
                 if output["MessageID"] not in message_ids:
                     messages_to_code.append(output)
