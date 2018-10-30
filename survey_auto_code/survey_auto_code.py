@@ -104,9 +104,8 @@ if __name__ == "__main__":
             if plan.cleaner is not None:
                 label = dict()
                 cleaned[plan.clean_field] = plan.cleaner(td[plan.raw_field])
-                # labels[labels_key].append(cleaned[plan.clean_field])
                 code_id = CODE_IDS[plan.scheme_id][cleaned[plan.clean_field]]
-                origin = {"OriginType":"Automatic","OriginID": "git_path", "Name": "survey_auto_code", "Metadata": {}}
+                origin = {"OriginType":"Automatic","OriginID": "https://github.com/AfricasVoices/Project-MCF/pull/7", "Name": "survey_auto_code", "Metadata": {}}
                 label["Checked"] = "false"
                 label["SchemeID"] = plan.scheme_id
                 label["CodeID"] = code_id
