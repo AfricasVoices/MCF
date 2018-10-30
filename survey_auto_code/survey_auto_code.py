@@ -36,26 +36,33 @@ if __name__ == "__main__":
     json_output_path = args.json_output_path
     coded_output_path = args.coded_output_path
 
+    # TODO: Move to CoreModules
+    CODE_IDS = {"Scheme-12cb6f95": {"female": "code-86a4602c", "male": "code-63dcde9a", "NA": "code-NA-3498451d", "NS": "code-NS-5334289d",
+     "NC": "code-NC-11d6bb91", "NR": "code-NR-03dd5d73"}}
+
     class CleaningPlan:
-        def __init__(self, raw_field, clean_field, coda_name, cleaner):
+        def __init__(self, raw_field, clean_field, coda_name, cleaner, scheme_id):
             self.raw_field = raw_field
             self.clean_field = clean_field
             self.coda_name = coda_name
             self.cleaner = cleaner
+            self.scheme_id = scheme_id
 
     cleaning_plan = [
         CleaningPlan("Gender (Text) - mcf_demog", "gender_clean", "Gender",
-                     swahili.DemographicCleaner.clean_gender),
+                     swahili.DemographicCleaner.clean_gender, "Scheme-12cb6f95"),
         CleaningPlan("Location (Text) - mcf_demog", "location_clean", "Location",
-                     None),
+                     None, "Scheme-59ad3a2d3086"),
         CleaningPlan("Education (Text) - mcf_demog", "education_clean", "Education",
-                     None),
+                     None, "Scheme-a57ce8d15245"),
         CleaningPlan("Age (Text) - mcf_demog", "age_clean", "Age",
-                     swahili.DemographicCleaner.clean_age),
-        CleaningPlan("Work (Text) - mcf_demog", "work_clean", "Work",
-                     None),
+                     # TODO:: set age cleaner once coding scheme is ready
+                     #swahili.DemographicCleaner.clean_age),
+                     None, None),
+        CleaningPlan("Work (Text) - mcf_demog", "work_clean", "Work", None,
+                     "Scheme-12be1d8f34eb"),
         CleaningPlan("Training (Text) - mcf_demog", "training_clean", "Training",
-                     None),
+                     None, "Scheme-8f0794281bb1"),
     ]
 
     # Load phone number UUID table
@@ -95,8 +102,17 @@ if __name__ == "__main__":
             labels_key = "{} Labels".format(plan.raw_field)
             labels[labels_key] = []
             if plan.cleaner is not None:
+                label = dict()
                 cleaned[plan.clean_field] = plan.cleaner(td[plan.raw_field])
-                labels[labels_key].append(cleaned[plan.clean_field])
+                # labels[labels_key].append(cleaned[plan.clean_field])
+                code_id = CODE_IDS[plan.scheme_id][cleaned[plan.clean_field]]
+                origin = {"OriginType":"Automatic","OriginID": "git_path", "Name": "survey_auto_code", "Metadata": {}}
+                label["Checked"] = "false"
+                label["SchemeID"] = plan.scheme_id
+                label["CodeID"] = code_id
+                label["DateTimeUTC"] = time.time()
+                label["Origin"] = origin
+                labels[labels_key].append(label)
         td.append_data(cleaned, Metadata(user, Metadata.get_call_location(), time.time()))
         td.append_data(message_id, Metadata(user, Metadata.get_call_location(), time.time()))
         td.append_data(labels, Metadata(user, Metadata.get_call_location(), time.time()))
