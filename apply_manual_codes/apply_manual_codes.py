@@ -75,6 +75,8 @@ if __name__ == "__main__":
                         help="Directory to read manually-coded Coda files from")
     parser.add_argument("json_output_path", metavar="json-output-path",
                         help="Path to a JSON file to write merged results to")
+    parser.add_argument("scheme_input_path", metavar="scheme-input-path",
+                        help="Directory to read Coda scheme files from")
                         
     
     args = parser.parse_args()
@@ -85,14 +87,13 @@ if __name__ == "__main__":
     interface_output_dir = args.interface_output_dir
 
     class MergePlan:
-        def __init__(self, raw_field, coded_field, coda_name):
-            self.raw_field = raw_field
-            self.coded_field = coded_field
+        def __init__(self, coda_name, coded_name):
             self.coda_name = coda_name
+            self.coded_name = coded_name
 
     merge_plan = [
-        MergePlan("gender_review", "gender_coded", "Gender"),
-        MergePlan("district_review", "district_coded", "District"),
+        MergePlan("Gender", "Gender_Coded"),
+        MergePlan("Location", "Location_Coded"),
         MergePlan("urban_rural_review", "urban_rural_coded", "Urban_Rural"),
         MergePlan("age_review", "age_coded", "Age"),
         MergePlan("assessment_review", "assessment_coded", "Assessment"),
