@@ -66,20 +66,20 @@ class AnalysisKeys(object):
             "UID": td["avf_phone_id"],
 
             "gender": td["gender_coded"]["CodeID"],
-            "gender_raw": td["gender_review"],
+            "gender_raw": td["Gender (Text) - mcf_demog"],
 
             "location": td["location_coded"]["CodeID"],
-            "location_raw": td["location_review"],
+            "location_raw": td["Location (Text) - mcf_demog"],
 
             "education": td["education_coded"]["CodeID"],
-            "education_raw": td["education_review"],
+            "education_raw": td["Educatio (Text) - mcf_demog"],
 
             "age": td["age_coded"]["CodeID"],
-            "age_raw": td["age_review"],
+            "age_raw": td["Age (Text) - mcf_demog"],
 
             "work": td["work_coded"]["CodeID"],
-            "work_raw": td["work_review"],
+            "work_raw": td["Work (Text) - mcf_demog"],
 
             "training": td["training_coded"]["CodeID"],
-            "training_raw": td["training_review"]
+            "training_raw": td["Training (Text) - mcf_demog"]
 }, Metadata(user, Metadata.get_call_location(), time.time()))
