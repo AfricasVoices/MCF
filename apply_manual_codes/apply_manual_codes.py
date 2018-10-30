@@ -94,20 +94,17 @@ if __name__ == "__main__":
     merge_plan = [
         MergePlan("Gender", "Gender_Coded"),
         MergePlan("Location", "Location_Coded"),
-        MergePlan("urban_rural_review", "urban_rural_coded", "Urban_Rural"),
-        MergePlan("age_review", "age_coded", "Age"),
-        MergePlan("assessment_review", "assessment_coded", "Assessment"),
-        MergePlan("idp_review", "idp_coded", "IDP"),
-
-        MergePlan("involved_esc4jmcna", "involved_esc4jmcna_coded", "Involved"),
-        MergePlan("repeated_esc4jmcna", "repeated_esc4jmcna_coded", "Repeated")
+        MergePlan("Education", "Education_Coded"),
+        MergePlan("Training", "Training_Coded"),
+        MergePlan("Work", "Work_Coded"),
+        MergePlan("Age", "Age_Coded"),
     ]
 
     # Load data from JSON file
     with open(json_input_path, "r") as f:
         data = TracedDataJsonIO.import_json_to_traced_data_iterable(f)
 
-    # Merge manually coded survey/evaluation Coda files into the cleaned dataset
+    # Merge manually coded survey Coda files into the cleaned dataset
     for plan in merge_plan:
         coda_file_path = path.join(coded_input_path, "{}_coded.json".format(plan.coda_name))
 
@@ -115,14 +112,18 @@ if __name__ == "__main__":
             print("Warning: No Coda file found for key '{}'".format(plan.coda_name))
             for td in data:
                 td.append_data(
-                    {plan.coded_field: None},
+                    {plan.coded_name: None},
                     Metadata(user, Metadata.get_call_location(), time.time())
                 )
             continue
 
+        scheme_file_path = path.join(scheme_file_path, "{}.json").format(plan.coda_name)
+        with open(scheme_file_path, "r") as f:
+            coding_scheme = json.load(f)
+
         with open(coda_file_path, "r") as f:
             TracedDataCoda2IO.import_coda_to_traced_data_iterable(
-                user, data, "MessageID", {plan.coda_name: plan.coded_field}, f)
+                user, data, "MessageID", {plan.coded_name: coding_scheme}, f)
 
     # Write coded data back out to disk
     IOUtils.ensure_dirs_exist_for_file(json_output_path)
