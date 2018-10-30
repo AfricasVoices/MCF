@@ -65,21 +65,21 @@ class AnalysisKeys(object):
         td.append_data({
             "UID": td["avf_phone_id"],
 
-            "gender": td["gender_coded"],
+            "gender": td["gender_coded"]["CodeID"],
             "gender_raw": td["gender_review"],
 
-            "location": td["location_coded"],
+            "location": td["location_coded"]["CodeID"],
             "location_raw": td["location_review"],
 
-            "education": td["education_coded"],
+            "education": td["education_coded"]["CodeID"],
             "education_raw": td["education_review"],
 
-            "age": td["age_coded"],
+            "age": td["age_coded"]["CodeID"],
             "age_raw": td["age_review"],
 
-            "work": td["work_coded"],
+            "work": td["work_coded"]["CodeID"],
             "work_raw": td["work_review"],
 
-            "training": td["training_coded"],
+            "training": td["training_coded"]["CodeID"],
             "training_raw": td["training_review"]
 }, Metadata(user, Metadata.get_call_location(), time.time()))
