@@ -40,9 +40,9 @@ if __name__ == "__main__":
     coded_output_path = args.coded_output_path
     age_scheme_path = args.age_scheme_path
 
-     # TODO: Move to CoreModules
+    # TODO: Read in all CodeIDs and SchemeIDs from scheme files
     CODE_IDS = {"Scheme-12cb6f95": {"female": "code-86a4602c", "male": "code-63dcde9a", "NA": "code-NA-3498451d", "NS": "code-NS-5334289d",
-     "NC": "code-NC-11d6bb91", "NR": "code-NR-03dd5d73"}, "Scheme-38460800af16": {}}
+     "NC": "code-NC-11d6bb91", "NR": "code-NR-03dd5d73"}, "Scheme-22b92dda5589": {}}
 
     CONTROL_CODES = ["NA", "NC", "WS"]
 
@@ -55,7 +55,7 @@ if __name__ == "__main__":
                 code_text = code["ControlCode"]
             else:
                 code_text = code["DisplayText"]
-            CODE_IDS["Scheme-38460800af16"][code_text] = code["CodeID"]            
+            CODE_IDS["Scheme-22b92dda5589"][code_text] = code["CodeID"]            
 
     class CleaningPlan:
         def __init__(self, raw_field, clean_field, coda_name, cleaner, scheme_id):
@@ -74,7 +74,7 @@ if __name__ == "__main__":
                      None, "Scheme-a57ce8d15245"),
         CleaningPlan("Age (Text) - mcf_demog", "age_clean", "Age",
                      swahili.DemographicCleaner.clean_age,
-                    "Scheme-38460800af16"),
+                    "Scheme-22b92dda5589"),
         CleaningPlan("Work (Text) - mcf_demog", "work_clean", "Work", None,
                      "Scheme-12be1d8f34eb"),
         CleaningPlan("Training (Text) - mcf_demog", "training_clean", "Training",
