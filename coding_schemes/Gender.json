@@ -49,6 +49,14 @@
         "DisplayText"    : "NR (not reviewed)",	
         "NumericValue"   : -40,
         "VisibleInCoda"  : false
+      },
+      {
+        "CodeID": "code-WS-adb25603b7af", 
+        "CodeType": "Control", 
+        "ControlCode": "WS", 
+        "DisplayText": "WS (wrong scheme)", 
+        "NumericValue": -100, 
+        "VisibleInCoda": true
       }
     ]
   }
