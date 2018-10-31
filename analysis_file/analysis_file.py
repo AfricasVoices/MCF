@@ -14,11 +14,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generates files for analysis from the cleaned and coded show "
                                                  "and survey responses")
     parser.add_argument("user", help="User launching this program")
-    parser.add_argument("messages_input_dir", metavar="messages-input-dir",
-                        help="Path to a directory containing JSON files of responses to each of the shows in this "
-                             "project. Each JSON file should contain a list of serialized TracedData objects")
-    parser.add_argument("survey_input_path", metavar="survey-input-path",
-                        help="Path to a coded survey JSON file, containing a list of serialized TracedData objects")
+    parser.add_argument("data_input_path", metavar="data-input-path",
+                        help="Path to a coded JSON file, containing a list of serialized TracedData objects")
     parser.add_argument("json_output_path", metavar="json-output-path",
                         help="Path to a JSON file to write serialized TracedData items to after modification by this"
                              "pipeline stage")
@@ -30,7 +27,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     user = args.user
-    data_input_path = args.survey_input_path
+    data_input_path = args.data_input_path
     json_output_path = args.json_output_path
     csv_by_message_output_path = args.csv_by_message_output_path
     csv_by_individual_output_path = args.csv_by_individual_output_path
@@ -66,10 +63,12 @@ if __name__ == "__main__":
     show_keys = set()
     for td in data:
         AnalysisKeys.set_analysis_keys(user, td)
+        """
         AnalysisKeys.set_matrix_keys(
             user, td, show_keys, "Employment_Idea (Text) - mcf_activation_coded",
             "work_opportunities"
         )
+        """
     show_keys = list(show_keys)
     show_keys.sort()
 

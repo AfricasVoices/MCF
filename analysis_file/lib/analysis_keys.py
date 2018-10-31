@@ -65,14 +65,14 @@ class AnalysisKeys(object):
         td.append_data({
             "UID": td["avf_phone_id"],
 
-            "gender": td["gender_coded"]["CodeID"],
+            "gender": td["Gender_Coded"]["CodeID"],
             "gender_raw": td["Gender (Text) - mcf_demog"],
 
             "location": td["location_coded"]["CodeID"],
             "location_raw": td["Location (Text) - mcf_demog"],
 
             "education": td["education_coded"]["CodeID"],
-            "education_raw": td["Educatio (Text) - mcf_demog"],
+            "education_raw": td["Education (Text) - mcf_demog"],
 
             "age": td["age_coded"]["CodeID"],
             "age_raw": td["Age (Text) - mcf_demog"],
