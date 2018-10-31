@@ -65,21 +65,21 @@ class AnalysisKeys(object):
         td.append_data({
             "UID": td["avf_phone_id"],
 
-            "gender": td["Gender_Coded"]["CodeID"],
-            "gender_raw": td["Gender (Text) - mcf_demog"],
+            #"gender": td["Gender_Coded"]["CodeID"],
+            #"gender_raw": td["Gender (Text) - mcf_demog"],
 
-            "location": td["location_coded"]["CodeID"],
-            "location_raw": td["Location (Text) - mcf_demog"],
+            #"location": td["location_coded"]["CodeID"],
+            #"location_raw": td["Location (Text) - mcf_demog"],
 
-            "education": td["education_coded"]["CodeID"],
+            "education": td["Education_Coded"]["CodeID"],
             "education_raw": td["Education (Text) - mcf_demog"],
 
-            "age": td["age_coded"]["CodeID"],
-            "age_raw": td["Age (Text) - mcf_demog"],
+            #"age": td["age_coded"]["CodeID"],
+            #"age_raw": td["Age (Text) - mcf_demog"],
 
-            "work": td["work_coded"]["CodeID"],
-            "work_raw": td["Work (Text) - mcf_demog"],
+            "work": td["Work_Coded"]["CodeID"],
+            "work_raw": td["Work (Text) - mcf_demog"]
 
-            "training": td["training_coded"]["CodeID"],
-            "training_raw": td["Training (Text) - mcf_demog"]
+            #"training": td["training_coded"]["CodeID"],
+            #"training_raw": td["Training (Text) - mcf_demog"]
 }, Metadata(user, Metadata.get_call_location(), time.time()))

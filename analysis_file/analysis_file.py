@@ -72,7 +72,7 @@ if __name__ == "__main__":
     show_keys = list(show_keys)
     show_keys.sort()
 
-    equal_keys = ["UID", source_flow_key]
+    equal_keys = ["UID"]
     equal_keys.extend(demog_keys)
     concat_keys = ["employment_idea_raw"]
     matrix_keys = show_keys
