@@ -24,6 +24,7 @@ if __name__ == "__main__":
     parser.add_argument("csv_by_individual_output_path", metavar="csv-by-individual-output-path",
                         help="Analysis dataset where respondents are the unit for analysis (i.e. one respondent "
                              "per row, with all their messages joined into a single cell).")
+    parser.add_argument("scheme_directory_path", metavar="scheme-directory-path")
 
     args = parser.parse_args()
     user = args.user
@@ -31,6 +32,7 @@ if __name__ == "__main__":
     json_output_path = args.json_output_path
     csv_by_message_output_path = args.csv_by_message_output_path
     csv_by_individual_output_path = args.csv_by_individual_output_path
+    scheme_directory_path = args.scheme
 
     # Serializer is currently overflowing
     # TODO: Investigate/address the cause of this.
