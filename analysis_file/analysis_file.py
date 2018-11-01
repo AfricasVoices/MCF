@@ -41,16 +41,22 @@ if __name__ == "__main__":
     demog_keys = [
         "location",
         "location_raw",
+        "location_num"
         "gender",
         "gender_raw",
+        "gender_num",
         "age",
         "age_raw",
+        "age_num"
         "education",
         "education_raw",
+        "education_num",
         "work",
         "work_raw",
+        "work_num",
         "training",
-        "training_raw"
+        "training_raw",
+        "training_num"
     ]
 
     textit_consent_withdrawn_key = "mobilisation_consent_complete"
