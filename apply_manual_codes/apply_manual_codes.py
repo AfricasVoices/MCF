@@ -62,11 +62,13 @@ class TracedDataCoda2IO(object):
                     )
                 else:
                     for label in labels:
-                        td.append_data(
-                            {key_of_coded: label},
-                            Metadata(label["Origin"]["OriginID"], Metadata.get_call_location(),
-                                     isoparse(label["DateTimeUTC"]).timestamp())
-)
+                        # TODO: workaround for not only getting latest label, do not merge with CoreDataModules
+                        if "SPECIAL-MANUALLY_UNCODED" not in label["CodeID"]:
+                            td.append_data(
+                                {key_of_coded: label},
+                                Metadata(label["Origin"]["OriginID"], Metadata.get_call_location(),
+                                        isoparse(label["DateTimeUTC"]).timestamp())
+    )
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Merges manually cleaned files back into a traced data file.")
