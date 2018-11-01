@@ -49,7 +49,8 @@ class TracedDataCoda2IO(object):
                 labels = coda_dataset.get(td[data_message_id_key], dict()).get(scheme[0]["SchemeID"])
                 if labels is None:
                     not_reviewed_code_id = \
-                        [code["CodeID"] for code in scheme[0]["Codes"] if "CodeType" in code and code["CodeType"] == "Control"] 
+                        [code["CodeID"] for code in scheme[0]["Codes"] if "CodeType" in code and code["CodeType"] == "Control" 
+                        and code["ControlCode"] == "NR"] 
                         # TODO: issue for having CodeType key for every code
                     td.append_data(
                         {key_of_coded: {
