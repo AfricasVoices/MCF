@@ -1,6 +1,8 @@
 import argparse
 import sys
 import time
+import os
+import json
 
 from core_data_modules.cleaners import Codes
 from core_data_modules.traced_data import Metadata
@@ -33,6 +35,18 @@ if __name__ == "__main__":
     csv_by_message_output_path = args.csv_by_message_output_path
     csv_by_individual_output_path = args.csv_by_individual_output_path
     scheme_directory_path = args.scheme
+
+
+    schemes = []
+    for filename in os.listdir(scheme_directory_path):
+        with open(filename, "r") as f:
+            schemes.append(json.load(f))
+            
+    codes = {}
+    for scheme in schemes:
+        for code in scheme[0]["Codes"]:
+            codes[code["CodeID"]] = {"DisplayText": code["DisplayText"], "NumericValue": code["NumericValue"]}
+     
 
     # Serializer is currently overflowing
     # TODO: Investigate/address the cause of this.

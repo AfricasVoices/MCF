@@ -61,7 +61,7 @@ class AnalysisKeys(object):
         td.append_data(matrix_d, Metadata(user, Metadata.get_call_location(), time.time()))
 
     @classmethod
-    def set_analysis_keys(cls, user, td):
+    def set_analysis_keys(cls, user, td, codes):
         td.append_data({
             "UID": td["avf_phone_id"],
 
@@ -71,7 +71,8 @@ class AnalysisKeys(object):
             #"location": td["location_coded"]["CodeID"],
             #"location_raw": td["Location (Text) - mcf_demog"],
 
-            "education": td["Education_Coded"]["CodeID"],
+            "education": codes[td["Education_Coded"]["CodeID"]]["DisplayText"],
+            "education_num": codes[td["Education_Coded"]["CodeID"]]["NumericValue"],
             "education_raw": td["Education (Text) - mcf_demog"],
 
             #"age": td["age_coded"]["CodeID"],
