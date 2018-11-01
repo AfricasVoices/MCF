@@ -62,6 +62,7 @@ class AnalysisKeys(object):
 
     @classmethod
     def set_analysis_keys(cls, user, td, codes):
+        print(codes[td["Education_Coded"]["CodeID"]].display_text)
         td.append_data({
             "UID": td["avf_phone_id"],
 
@@ -70,15 +71,16 @@ class AnalysisKeys(object):
 
             #"location": td["location_coded"]["CodeID"],
             #"location_raw": td["Location (Text) - mcf_demog"],
-
-            "education": codes[td["Education_Coded"]["CodeID"]]["DisplayText"],
-            "education_num": codes[td["Education_Coded"]["CodeID"]]["NumericValue"],
+            
+            "education": codes[td["Education_Coded"]["CodeID"]].display_text,
+            "education_num": codes[td["Education_Coded"]["CodeID"]].numeric_value,
             "education_raw": td["Education (Text) - mcf_demog"],
 
             #"age": td["age_coded"]["CodeID"],
             #"age_raw": td["Age (Text) - mcf_demog"],
 
-            "work": td["Work_Coded"]["CodeID"],
+            "work": codes[td["Work_Coded"]["CodeID"]].display_text,
+            "work_num":  codes[td["Work_Coded"]["CodeID"]].numeric_value,
             "work_raw": td["Work (Text) - mcf_demog"]
 
             #"training": td["training_coded"]["CodeID"],

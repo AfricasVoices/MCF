@@ -34,19 +34,23 @@ if __name__ == "__main__":
     json_output_path = args.json_output_path
     csv_by_message_output_path = args.csv_by_message_output_path
     csv_by_individual_output_path = args.csv_by_individual_output_path
-    scheme_directory_path = args.scheme
-
+    scheme_directory_path = args.scheme_directory_path
 
     schemes = []
     for filename in os.listdir(scheme_directory_path):
-        with open(filename, "r") as f:
+        with open(os.path.join(scheme_directory_path, filename), "r") as f:
             schemes.append(json.load(f))
-            
+    
+    class Code:
+        def __init__(self, display_text, numeric_value):
+            self.display_text = display_text
+            self.numeric_value = numeric_value
+
     codes = {}
     for scheme in schemes:
         for code in scheme[0]["Codes"]:
-            codes[code["CodeID"]] = {"DisplayText": code["DisplayText"], "NumericValue": code["NumericValue"]}
-     
+            codes[code["CodeID"]] = Code(code["DisplayText"], code["NumericValue"])
+            #codes[code["CodeID"]] = {"DisplayText": code["DisplayText"], "NumericValue": code["NumericValue"]}     
 
     # Serializer is currently overflowing
     # TODO: Investigate/address the cause of this.
@@ -84,7 +88,7 @@ if __name__ == "__main__":
     # Translate keys to final values for analysis
     show_keys = set()
     for td in data:
-        AnalysisKeys.set_analysis_keys(user, td)
+        AnalysisKeys.set_analysis_keys(user, td, codes)
         """
         AnalysisKeys.set_matrix_keys(
             user, td, show_keys, "Employment_Idea (Text) - mcf_activation_coded",
