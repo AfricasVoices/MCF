@@ -93,11 +93,10 @@ if __name__ == "__main__":
     show_keys = set()
     for td in data:
         for scheme in schemes:
-            code_in_td = td[schemes[scheme]]
-            scheme_id = code_in_td["SchemeID"]
-            code_id = code_in_td["CodeID"]
+            code_in_td = td.get(schemes[scheme])
+            scheme_id = code_in_td.get("SchemeID")
+            code_id = code_in_td.get("CodeID")
             code = codes[scheme_id][code_id]
-            # Work around missing labels in sample coded files
             AnalysisKeys.set_analysis_keys(user, td, codes, scheme_id, code_id)
             """
             AnalysisKeys.set_matrix_keys(
@@ -105,6 +104,8 @@ if __name__ == "__main__":
                 "work_opportunities"
             )
             """
+
+    
     show_keys = list(show_keys)
     show_keys.sort()
 

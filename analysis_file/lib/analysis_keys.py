@@ -62,8 +62,6 @@ class AnalysisKeys(object):
 
     @classmethod
     def set_analysis_keys(cls, user, td, codes, scheme_id, code_id):
-        print(codes.get(scheme_id))
-        print(codes.get(scheme_id).get(code_id).display_text)
         #print(codes.get(td["Education_Coded"].get("SchemeID")).get(td["Education_Coded"]["CodeID"]))
         td.append_data({
             "UID": td["avf_phone_id"],
