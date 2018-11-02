@@ -61,30 +61,13 @@ class AnalysisKeys(object):
         td.append_data(matrix_d, Metadata(user, Metadata.get_call_location(), time.time()))
 
     @classmethod
-    def set_analysis_keys(cls, user, td, codes, scheme_id, code_id):
-        #print(codes.get(td["Education_Coded"].get("SchemeID")).get(td["Education_Coded"]["CodeID"]))
+    def set_analysis_keys(cls, user, td, codes, scheme, scheme_id, code_id):
         td.append_data({
             "UID": td["avf_phone_id"],
-
-            #"gender": td["Gender_Coded"]["CodeID"],
-            #"gender_raw": td["Gender (Text) - mcf_demog"],
-
-            #"location": td["location_coded"]["CodeID"],
-            #"location_raw": td["Location (Text) - mcf_demog"],
             
-            "education": codes.get(scheme_id).get(code_id).display_text,
-            "education_num": codes.get(scheme_id).get(code_id).numeric_value,
-            #"education": codes[td["Education_Coded"]["CodeID"]].display_text,
-            #"education_num": codes[td["Education_Coded"]["CodeID"]].numeric_value,
-            "education_raw": td["Education (Text) - mcf_demog"]
-
-            #"age": td["age_coded"]["CodeID"],
-            #"age_raw": td["Age (Text) - mcf_demog"],
-
-            #"work": codes[td["Work_Coded"]["CodeID"]].display_text,
-            #"work_num":  codes[td["Work_Coded"]["CodeID"]].numeric_value,
-            #"work_raw": td["Work (Text) - mcf_demog"]
-
-            #"training": td["training_coded"]["CodeID"],
-            #"training_raw": td["Training (Text) - mcf_demog"]
+            scheme: codes.get(scheme_id).get(code_id).display_text,
+            "{}_num".format(scheme): codes.get(scheme_id).get(code_id).numeric_value,
+            # TODO: give a more friendly name to raw field in td
+            "{}_raw".format(scheme): td["{} (Text) - mcf_demog".format(scheme.capitalize())]
+            
 }, Metadata(user, Metadata.get_call_location(), time.time()))

@@ -52,7 +52,6 @@ if __name__ == "__main__":
         for code in scheme[0]["Codes"]:
             code_objects[code["CodeID"]] = Code(code["DisplayText"], code["NumericValue"])
         codes[scheme[0]["SchemeID"]] = code_objects
-           # codes[code["CodeID"]] = Code(code["DisplayText"], code["NumericValue"])
 
     # Serializer is currently overflowing
     # TODO: Investigate/address the cause of this.
@@ -75,11 +74,12 @@ if __name__ == "__main__":
         "work_num",
         "work_raw",
         "training",
-        "training_num"
+        "training_num",
         "training_raw",
     ]
 
-    schemes = {"education": "Education_Coded", "work": "Work_Coded"}
+    schemes = {"education": "Education_Coded", "work": "Work_Coded", "location": "Location_Coded", "training": "Training_Coded",
+    "gender": "Gender_Coded", "age": "Age_Coded"}
 
     textit_consent_withdrawn_key = "mobilisation_consent_complete"
     avf_consent_withdrawn_key = "withdrawn_consent"
@@ -97,31 +97,17 @@ if __name__ == "__main__":
             scheme_id = code_in_td.get("SchemeID")
             code_id = code_in_td.get("CodeID")
             code = codes[scheme_id][code_id]
-            AnalysisKeys.set_analysis_keys(user, td, codes, scheme_id, code_id)
-            """
-            AnalysisKeys.set_matrix_keys(
-                user, td, show_keys, "Employment_Idea (Text) - mcf_activation_coded",
-                "work_opportunities"
-            )
-            """
-
+            AnalysisKeys.set_analysis_keys(user, td, codes, scheme, scheme_id, code_id)
     
     show_keys = list(show_keys)
     show_keys.sort()
 
-    equal_keys = ["avf_phone_id"]
+    equal_keys = ["UID"]
     equal_keys.extend(demog_keys)
     concat_keys = ["employment_idea_raw"]
     matrix_keys = show_keys
     bool_keys = [
-        avf_consent_withdrawn_key,
-
-        #,
-        #"bulk_sms",
-        #"sms_ad",
-        #"radio_promo",
-        #"radio_show",
-        #"non_logical_time"
+        avf_consent_withdrawn_key
     ]
 
     # Export to CSV
