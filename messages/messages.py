@@ -87,27 +87,40 @@ if __name__ == "__main__":
     with open(csv_output_path, "w") as f:
         TracedDataCSVIO.export_traced_data_iterable_to_csv(show_messages, f, headers=["avf_phone_id", run_id_key, raw_text_key])
 
-    # Output messages to Coda
-    IOUtils.ensure_dirs_exist_for_file(coda_output_path)
-    run_id_key = "{} (Run ID) - {}".format(variable_name, flow_name)
     raw_text_key = "{} (Text) - {}".format(variable_name, flow_name)
     time_key = "{} (Time) - {}".format(variable_name, flow_name)
-    keys = [run_id_key, raw_text_key, time_key]
-    keymap = {run_id_key:"MessageID", raw_text_key:"Text", time_key:"CreationDateTimeUTC"}
 
-    messages_to_code = []
+    # Update traced data objects with MessageID and Labels
     for td in show_messages:
-        td.append_data({"Labels":[]},  Metadata(user, Metadata.get_call_location(), time.time()))
-        messages_to_code.append({key:td[key] for key in keys})
+        message_id = dict()
+        labels = dict()
+        hash_object = hashlib.sha256()
+        hash_object.update(td[raw_text_key].encode('utf-8'))
+        message_id_string = hash_object.hexdigest()
+        message_id_key = "{} MessageID".format(raw_text_key)
+        message_id[message_id_key] = message_id_string
+        labels_key = "{} Labels".format(raw_text_key)
+        labels[labels_key] = []
+        td.append_data(message_id, Metadata(user, Metadata.get_call_location(), time.time()))
+        td.append_data(labels, Metadata(user, Metadata.get_call_location(), time.time()))
 
-    for td in messages_to_code:
-        td_remapped = {}
-        for key in td:
-            td_remapped[keymap[key]] = td[key] 
-
-    with open(coda_output_path, "w") as f:
-        TracedDataCodaIO.export_traced_data_iterable_to_coda(show_messages, show_message_key, f)
-
+     # Output messages to Coda
+    IOUtils.ensure_dirs_exist_for_file(coda_output_path)
+    message_ids = list()
+    messages_to_code = list()
+    for td in show_messages:
+        output = dict()        
+        output["Labels"] = td["{} Labels".format(plan.raw_field)]
+        output["MessageID"] = td["{} MessageID".format(plan.raw_field)]
+        output["Text"] = str(td[plan.raw_field])
+        output["CreationDateTimeUTC"] = isoparse(td["{} (Time) - {}".format(plan.coda_name, "mcf_demog")]).isoformat()
+        if output["MessageID"] not in message_ids:
+                    messages_to_code.append(output)
+                    message_ids.append(output["MessageID"])
+        with open(coded_output_file_path, "w") as f:
+            jsonpickle.set_encoder_options("json", sort_keys=True)
+            f.write(jsonpickle.dumps(messages_to_code))
+            f.write("\n")
             
     # Randomly select some messages to export for ICR
     random.seed(0)
