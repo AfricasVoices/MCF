@@ -1,0 +1,163 @@
+{
+  "Codes": [
+    {
+      "CodeID": "code-faa0bcca4f77",
+      "DisplayText": "cooperation",
+      "NumericValue": 0,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-2a927ac6005e",
+      "DisplayText": "job creation",
+      "NumericValue": 1,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-f77c9a2e5de8",
+      "DisplayText": "spaces for talent showcase",
+      "NumericValue": 2,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-4b3805423489",
+      "DisplayText": "networking",
+      "NumericValue": 3,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-95bd6c363cbb",
+      "DisplayText": "empowerment",
+      "NumericValue": 4,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-79151b6e7bde",
+      "DisplayText": "self employment",
+      "NumericValue": 5,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-14c5c9d85900",
+      "DisplayText": "innovation",
+      "NumericValue": 6,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-154089442483",
+      "DisplayText": "material support",
+      "NumericValue": 7,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-088677a571fd",
+      "DisplayText": "government help",
+      "NumericValue": 8,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-d3a900e52544",
+      "DisplayText": "education",
+      "NumericValue": 9,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-64399e09bb6f",
+      "DisplayText": "training",
+      "NumericValue": 10,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-a534de5840db",
+      "DisplayText": "skills",
+      "NumericValue": 11,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-f13e90594c68",
+      "DisplayText": "mentorships",
+      "NumericValue": 12,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-5d6f6616a462",
+      "DisplayText": "soft loans/funding/capital",
+      "NumericValue": 13,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-a55fe0292dc6",
+      "DisplayText": "information on available jobs",
+      "NumericValue": 14,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-3507023b9430",
+      "DisplayText": "forums/events",
+      "NumericValue": 15,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-cf53cb9f63c0",
+      "DisplayText": "internships",
+      "NumericValue": 16,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-6961bbbdb23b",
+      "DisplayText": "better policies",
+      "NumericValue": 17,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-1fec4f3bc08c",
+      "DisplayText": "saving money",
+      "NumericValue": 18,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-093e09abfa64",
+      "DisplayText": "hard work",
+      "NumericValue": 19,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-f92d310ca51a",
+      "DisplayText": "job/business idea",
+      "NumericValue": 20,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-2ab244b99616",
+      "DisplayText": "other/not relevant",
+      "NumericValue": 21,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-NA-f93d3eb7",
+      "CodeType": "Control",
+      "ControlCode": "NA",
+      "DisplayText": "NA (missing)",
+      "NumericValue": -10,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-NC-42f1d983",
+      "CodeType": "Control",
+      "ControlCode": "NC",
+      "DisplayText": "NC (not coded)",
+      "NumericValue": -30,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-WS-adb25603b7af",
+      "CodeType": "Control",
+      "ControlCode": "WS",
+      "DisplayText": "WS (wrong scheme)",
+      "NumericValue": -100,
+      "VisibleInCoda": true
+    }
+  ],
+  "Name": "Offline_Activation",
+  "SchemeID": "Scheme-6c8971d68073",
+  "Version": "0.0.0.1"
+}
