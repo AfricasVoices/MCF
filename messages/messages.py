@@ -104,7 +104,7 @@ if __name__ == "__main__":
         td.append_data(message_id, Metadata(user, Metadata.get_call_location(), time.time()))
         td.append_data(labels, Metadata(user, Metadata.get_call_location(), time.time()))
 
-     # Output messages to Coda
+    # Output messages to Coda
     IOUtils.ensure_dirs_exist_for_file(coda_output_path)
     message_ids = list()
     messages_to_code = list()
