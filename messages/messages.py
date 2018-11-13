@@ -114,6 +114,7 @@ if __name__ == "__main__":
         labels_key = "{} Labels".format(raw_text_key)
         labels[labels_key] = []
         in_segment = {"in_segment": False}
+        # TODO: Make segment selection optional
         if td["avf_phone_id"] in segment:
             in_segment = {"in_segment": True}
         td.append_data(in_segment, Metadata(user, Metadata.get_call_location(), time.time()))
