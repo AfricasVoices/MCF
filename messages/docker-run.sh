@@ -5,8 +5,8 @@ set -e
 IMAGE_NAME=mcf-messages
 
 # Check that the correct number of arguments were provided.
-if [ $# -ne 9 ]; then
-    echo "Usage: sh docker-run.sh <user> <json-input-path> <prev-coda-input-path> <flow-name> <variable-name> <json-output-path> <coda-output-path> <icr-output-path> <csv-output-path>"
+if [ $# -ne 10 ]; then
+    echo "Usage: sh docker-run.sh <user> <json-input-path> <prev-coda-input-path> <flow-name> <variable-name> <json-output-path> <coda-output-path> <icr-output-path> <csv-output-path> <segment-uuid-list-path>"
     exit
 fi
 
@@ -20,6 +20,7 @@ OUTPUT_JSON=$6
 OUTPUT_CODA=$7
 OUTPUT_ICR=$8
 OUTPUT_CSV=$9
+INPUT_SEGMENT=${10}
 
 # Build an image for this pipeline stage.
 docker build -t "$IMAGE_NAME" .
@@ -35,9 +36,13 @@ trap finish EXIT
 
 # Copy input data into the container
 docker cp "$INPUT_JSON" "$container:/data/input.json"
+
 if [ -e "$INPUT_CODA" ]; then 
     docker cp "$INPUT_CODA" "$container:/data/input-coda.csv"
 fi
+
+docker cp "$INPUT_SEGMENT" "$container:/data/input-segment.csv"
+
 
 # Run the container
 docker start -a -i "$container"

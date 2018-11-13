@@ -2,6 +2,9 @@ import argparse
 import os
 import time
 import random
+import hashlib
+import jsonpickle
+import unicodecsv
 
 import pytz
 from core_data_modules.traced_data import Metadata
@@ -30,6 +33,7 @@ if __name__ == "__main__":
                              "reliability evaluation")
     parser.add_argument("csv_output_path",  metavar="csv-output-path",
                         help="Path to a CSV file to write all messages for thematic analysis")
+    parser.add_argument("segment_uuid_list_path", metavar="segment-uuid-list-path")
 
     args = parser.parse_args()
     user = args.user
@@ -41,6 +45,7 @@ if __name__ == "__main__":
     coda_output_path = args.coda_output_path
     icr_output_path = args.icr_output_path
     csv_output_path = args.csv_output_path
+    segment_uuid_path = args.segment_uuid_list_path
     
     ICR_MESSAGES_COUNT = 200  # Number of messages to export in the ICR file
     
@@ -54,6 +59,13 @@ if __name__ == "__main__":
     # Load data from JSON file
     with open(json_input_path, "r") as f:
         show_messages = TracedDataJsonIO.import_json_to_traced_data_iterable(f)
+
+    segment = list()
+    # Load segment uuids
+    with open(segment_uuid_path, "rb") as f:
+        segment_dict = unicodecsv.DictReader(f, encoding="utf-8")
+        for row in segment_dict:
+            segment.append(row["ID"])
 
     # Filter out test messages sent by AVF.
     show_messages = [td for td in show_messages if not td.get("test_run", False)]
@@ -90,7 +102,7 @@ if __name__ == "__main__":
     raw_text_key = "{} (Text) - {}".format(variable_name, flow_name)
     time_key = "{} (Time) - {}".format(variable_name, flow_name)
 
-    # Update traced data objects with MessageID and Labels
+    # Update traced data objects with MessageID and Labels and whether they are from selected segment
     for td in show_messages:
         message_id = dict()
         labels = dict()
@@ -101,6 +113,10 @@ if __name__ == "__main__":
         message_id[message_id_key] = message_id_string
         labels_key = "{} Labels".format(raw_text_key)
         labels[labels_key] = []
+        in_segment = {"in_segment": False}
+        if td["avf_phone_id"] in segment:
+            in_segment = {"in_segment": True}
+        td.append_data(in_segment, Metadata(user, Metadata.get_call_location(), time.time()))
         td.append_data(message_id, Metadata(user, Metadata.get_call_location(), time.time()))
         td.append_data(labels, Metadata(user, Metadata.get_call_location(), time.time()))
 
@@ -110,14 +126,15 @@ if __name__ == "__main__":
     messages_to_code = list()
     for td in show_messages:
         output = dict()        
-        output["Labels"] = td["{} Labels".format(plan.raw_field)]
-        output["MessageID"] = td["{} MessageID".format(plan.raw_field)]
-        output["Text"] = str(td[plan.raw_field])
-        output["CreationDateTimeUTC"] = isoparse(td["{} (Time) - {}".format(plan.coda_name, "mcf_demog")]).isoformat()
-        if output["MessageID"] not in message_ids:
-                    messages_to_code.append(output)
-                    message_ids.append(output["MessageID"])
-        with open(coded_output_file_path, "w") as f:
+        output["Labels"] = td["{} Labels".format(raw_text_key)]
+        output["MessageID"] = td["{} MessageID".format(raw_text_key)]
+        output["Text"] = str(td[raw_text_key])
+        output["CreationDateTimeUTC"] = isoparse(td["{} (Time) - {}".format(variable_name, flow_name)]).isoformat()
+        if td["in_segment"]:
+            if output["MessageID"] not in message_ids:
+                messages_to_code.append(output)
+                message_ids.append(output["MessageID"])
+        with open(coda_output_path, "w") as f:
             jsonpickle.set_encoder_options("json", sort_keys=True)
             f.write(jsonpickle.dumps(messages_to_code))
             f.write("\n")
