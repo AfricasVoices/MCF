@@ -21,4 +21,4 @@ ADD . /app
 # USER is an environment variable which needs to be set when constructing this container e.g. via
 # docker run or docker container create. Use docker-run.sh to set these automatically.
 CMD pipenv run python messages.py "$USER" /data/input.json /data/input-coda.csv "$FLOW_NAME" "$VARIABLE_NAME" \
-/data/output.json /data/output-coda.csv /data/output-icr.csv /data/output-csv.csv /data/input-segment.csv
+/data/output.json /data/output-coda.json /data/output-icr.csv /data/output-csv.csv /data/input-segment.csv
