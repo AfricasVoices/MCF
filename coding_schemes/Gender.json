@@ -1,0 +1,55 @@
+[
+  {
+    "SchemeID"      :  "Scheme-12cb6f95",
+    "Name"          :  "Gender",
+    "Version"       :  "0.0.0.1",
+    "Codes"        :  [         
+      {
+        "CodeID"        : "code-63dcde9a",
+        "DisplayText"    : "male",
+        "Shortcut"       : "m",	
+        "NumericValue"   : 1,
+        "VisibleInCoda"  : true
+      },
+      {
+        "CodeID"        : "code-86a4602c",
+        "DisplayText"    : "female",	
+        "Shortcut"       : "f",	
+        "NumericValue"   : 2,
+        "VisibleInCoda"  : true
+      },
+      {
+        "CodeID"        : "code-NA-3498451d",
+        "CodeType"      : "Control", 
+        "ControlCode"   : "NA", 
+        "DisplayText"    : "NA (missing)",	
+        "NumericValue"   : -10,
+        "VisibleInCoda"  : true
+      },
+      {
+        "CodeID"        : "code-NS-5334289d",
+        "CodeType"      : "Control", 
+        "ControlCode"   : "NS", 
+        "DisplayText"    : "NS (skip)",	
+        "NumericValue"   : -20,
+        "VisibleInCoda"  : false
+      },
+      {
+        "CodeID"        : "code-NC-11d6bb91",
+        "CodeType"      : "Control", 
+        "ControlCode"   : "WS", 
+        "DisplayText"    : "NC (not coded)",	
+        "NumericValue"   : -30,
+        "VisibleInCoda"  : true
+      },
+      {
+        "CodeID"        : "code-NR-03dd5d73",
+        "CodeType"      : "Control", 
+        "ControlCode"   : "NR", 
+        "DisplayText"    : "NR (not reviewed)",	
+        "NumericValue"   : -40,
+        "VisibleInCoda"  : false
+      }
+    ]
+  }
+]
