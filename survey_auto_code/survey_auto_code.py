@@ -29,7 +29,7 @@ if __name__ == "__main__":
                         help="Path to a JSON file to write processed TracedData messages to")
     parser.add_argument("coded_output_path", metavar="coding-output-path",
                         help="Directory to write coding files to")
-    parser.add_argument("age_scheme_path")
+    parser.add_argument("coding_schemes_path", metavar="coding-schemes-path", help="Directory containing coding schemes")
 
     args = parser.parse_args()
     user = args.user
@@ -38,25 +38,14 @@ if __name__ == "__main__":
     phone_uuid_table_path = args.phone_uuid_table_path
     json_output_path = args.json_output_path
     coded_output_path = args.coded_output_path
-    age_scheme_path = args.age_scheme_path
+    coding_schemes_path = args.coding_schemes_path
 
      # TODO: Read in all codes and schemes from scheme file
      # TODO: move to CoreDataModules
-    CODE_IDS = {"Scheme-12cb6f95": {"female": "code-86a4602c", "male": "code-63dcde9a", "NA": "code-NA-3498451d", "NS": "code-NS-5334289d",
-     "NC": "code-NC-11d6bb91", "NR": "code-NR-03dd5d73"}, "Scheme-22b92dda5589": {}}
+    #CODE_IDS = {"Scheme-12cb6f95": {"female": "code-86a4602c", "male": "code-63dcde9a", "NA": "code-NA-3498451d", "NS": "code-NS-5334289d",
+    #"NC": "code-NC-11d6bb91", "NR": "code-NR-03dd5d73"}, "Scheme-22b92dda5589": {}}
 
     CONTROL_CODES = ["NA", "NC", "WS"]
-
-    with open(age_scheme_path, "r") as f:
-        age_scheme = json.load(f)
-
-    age_codes = age_scheme["Codes"]
-    for code in age_codes:
-            if "ControlCode" in code:
-                code_text = code["ControlCode"]
-            else:
-                code_text = code["DisplayText"]
-            CODE_IDS["Scheme-22b92dda5589"][code_text] = code["CodeID"]            
 
     class CleaningPlan:
         def __init__(self, raw_field, clean_field, coda_name, cleaner, scheme_id):
@@ -105,6 +94,23 @@ if __name__ == "__main__":
     for plan in cleaning_plan:
         data = [td for td in data if td[plan.raw_field] not in {Codes.TRUE_MISSING, Codes.SKIPPED, Codes.NOT_LOGICAL}]
 
+    # Load code metadate from coding schemes
+    code_ids = dict()
+    IOUtils.ensure_dirs_exist(coding_schemes_path)
+    for plan in cleaning_plan:
+        coding_scheme_path = path.join(coding_schemes_path, "{}.json".format(plan.coda_name))
+        with open(coding_scheme_path, "r") as f:
+            scheme = json.load(f)
+            codes = scheme[0]["Codes"]
+            code_ids[scheme[0]["SchemeID"]] = {}
+            for code in codes:
+                    if "ControlCode" in code:
+                        code_text = code["ControlCode"]
+                    else:
+                        code_text = code["DisplayText"]
+                    code_ids[scheme[0]["SchemeID"]][code_text] = code["CodeID"]            
+    print(code_ids)
+    
     # Clean all responses, add MessageID and Labels
     for td in data:
         cleaned = dict()
@@ -121,7 +127,7 @@ if __name__ == "__main__":
             if plan.cleaner is not None:
                 label = dict()
                 cleaned[plan.clean_field] = str(plan.cleaner(td[plan.raw_field]))
-                code_id = CODE_IDS[plan.scheme_id][cleaned[plan.clean_field]]
+                code_id = code_ids[plan.scheme_id][cleaned[plan.clean_field]]
                 origin = {"OriginType":"Automatic","OriginID": "https://github.com/AfricasVoices/Project-MCF/pull/7", "Name": "survey_auto_code", "Metadata": {}}
                 label["Checked"] = False
                 label["Confidence"] = 0
