@@ -61,7 +61,9 @@ if __name__ == "__main__":
         show_messages = TracedDataJsonIO.import_json_to_traced_data_iterable(f)
 
     segment = list()
+
     # Load segment uuids
+    IOUtils.ensure_dirs_exist_for_file(segment_uuid_path)
     with open(segment_uuid_path, "rb") as f:
         segment_dict = unicodecsv.DictReader(f, encoding="utf-8")
         for row in segment_dict:
@@ -102,7 +104,7 @@ if __name__ == "__main__":
     raw_text_key = "{} (Text) - {}".format(variable_name, flow_name)
     time_key = "{} (Time) - {}".format(variable_name, flow_name)
 
-    # Update traced data objects with MessageID and Labels and whether they are from selected segment
+    # Update traced data objects with MessageID and Labels and optionally whether they are from the selected segment
     for td in show_messages:
         message_id = dict()
         labels = dict()
@@ -113,11 +115,13 @@ if __name__ == "__main__":
         message_id[message_id_key] = message_id_string
         labels_key = "{} Labels".format(raw_text_key)
         labels[labels_key] = []
-        in_segment = {"in_segment": False}
-        # TODO: Make segment selection optional
-        if td["avf_phone_id"] in segment:
-            in_segment = {"in_segment": True}
-        td.append_data(in_segment, Metadata(user, Metadata.get_call_location(), time.time()))
+        
+        if os.path.exists(segment_uuid_path):
+            in_segment = {"in_segment": False}
+            if td["avf_phone_id"] in segment:
+                in_segment = {"in_segment": True}
+                td.append_data(in_segment, Metadata(user, Metadata.get_call_location(), time.time()))
+
         td.append_data(message_id, Metadata(user, Metadata.get_call_location(), time.time()))
         td.append_data(labels, Metadata(user, Metadata.get_call_location(), time.time()))
 
