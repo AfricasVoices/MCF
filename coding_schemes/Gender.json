@@ -37,7 +37,7 @@
       {
         "CodeID"        : "code-NC-11d6bb91",
         "CodeType"      : "Control", 
-        "ControlCode"   : "WS", 
+        "ControlCode"   : "NC", 
         "DisplayText"    : "NC (not coded)",	
         "NumericValue"   : -30,
         "VisibleInCoda"  : true
