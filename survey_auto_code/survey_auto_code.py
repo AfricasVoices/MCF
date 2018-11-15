@@ -40,11 +40,6 @@ if __name__ == "__main__":
     coded_output_path = args.coded_output_path
     coding_schemes_path = args.coding_schemes_path
 
-     # TODO: Read in all codes and schemes from scheme file
-     # TODO: move to CoreDataModules
-    #CODE_IDS = {"Scheme-12cb6f95": {"female": "code-86a4602c", "male": "code-63dcde9a", "NA": "code-NA-3498451d", "NS": "code-NS-5334289d",
-    #"NC": "code-NC-11d6bb91", "NR": "code-NR-03dd5d73"}, "Scheme-22b92dda5589": {}}
-
     CONTROL_CODES = ["NA", "NC", "WS"]
 
     class CleaningPlan:
@@ -109,8 +104,7 @@ if __name__ == "__main__":
                     else:
                         code_text = code["DisplayText"]
                     code_ids[scheme[0]["SchemeID"]][code_text] = code["CodeID"]            
-    print(code_ids)
-    
+
     # Clean all responses, add MessageID and Labels
     for td in data:
         cleaned = dict()
