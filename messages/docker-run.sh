@@ -41,7 +41,9 @@ if [ -e "$INPUT_CODA" ]; then
     docker cp "$INPUT_CODA" "$container:/data/input-coda.csv"
 fi
 
-docker cp "$INPUT_SEGMENT" "$container:/data/input-segment.csv"
+if [ -e "$INPUT_SEGMENT" ]; then 
+   docker cp "$INPUT_SEGMENT" "$container:/data/input-segment.csv"
+fi
 
 
 # Run the container
@@ -52,7 +54,7 @@ mkdir -p "$(dirname "$OUTPUT_JSON")"
 docker cp "$container:/data/output.json" "$OUTPUT_JSON"
 
 mkdir -p "$(dirname "$OUTPUT_CODA")"
-docker cp "$container:/data/output-coda.csv" "$OUTPUT_CODA"
+docker cp "$container:/data/output-coda.json" "$OUTPUT_CODA"
 
 mkdir -p "$(dirname "$OUTPUT_ICR")"
 docker cp "$container:/data/output-icr.csv" "$OUTPUT_ICR"

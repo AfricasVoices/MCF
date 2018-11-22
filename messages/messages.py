@@ -54,7 +54,7 @@ if __name__ == "__main__":
     eat_key = "{} (Time EAT) - {}".format(variable_name, flow_name)
     inside_time_window = []
     START_TIME = isoparse("2018-10-18T00+03:00")
-    END_TIME = isoparse("2018-10-27T00+03:00")
+    END_TIME = isoparse("2018-12-27T00+03:00")
 
     # Load data from JSON file
     with open(json_input_path, "r") as f:
@@ -63,11 +63,11 @@ if __name__ == "__main__":
     segment = list()
 
     # Load segment uuids
-    IOUtils.ensure_dirs_exist_for_file(segment_uuid_path)
-    with open(segment_uuid_path, "rb") as f:
-        segment_dict = unicodecsv.DictReader(f, encoding="utf-8")
-        for row in segment_dict:
-            segment.append(row["ID"])
+    if os.path.exists(segment_uuid_path):
+        with open(segment_uuid_path, "rb") as f:
+            segment_dict = unicodecsv.DictReader(f, encoding="utf-8")
+            for row in segment_dict:
+                segment.append(row["ID"])
 
     # Filter out test messages sent by AVF.
     show_messages = [td for td in show_messages if not td.get("test_run", False)]
@@ -116,7 +116,7 @@ if __name__ == "__main__":
         labels_key = "{} Labels".format(raw_text_key)
         labels[labels_key] = []
         
-        if os.path.exists(segment_uuid_path):
+        if segment:
             in_segment = {"in_segment": False}
             if td["avf_phone_id"] in segment:
                 in_segment = {"in_segment": True}
@@ -135,10 +135,15 @@ if __name__ == "__main__":
         output["MessageID"] = td["{} MessageID".format(raw_text_key)]
         output["Text"] = str(td[raw_text_key])
         output["CreationDateTimeUTC"] = isoparse(td["{} (Time) - {}".format(variable_name, flow_name)]).isoformat()
-        if td["in_segment"]:
+        if segment:
+            if td["in_segment"]:
+                if output["MessageID"] not in message_ids:
+                    messages_to_code.append(output)
+                    message_ids.append(output["MessageID"])
+        else:
             if output["MessageID"] not in message_ids:
-                messages_to_code.append(output)
-                message_ids.append(output["MessageID"])
+                    messages_to_code.append(output)
+                    message_ids.append(output["MessageID"])
         with open(coda_output_path, "w") as f:
             jsonpickle.set_encoder_options("json", sort_keys=True)
             f.write(jsonpickle.dumps(messages_to_code))
