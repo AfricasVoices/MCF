@@ -7,15 +7,16 @@ from dateutil.parser import isoparse
 import jsonpickle
 import datetime
 import json
+import unicodecsv
 
 from core_data_modules.cleaners import swahili, Codes
 from core_data_modules.traced_data import Metadata, TracedData
-from core_data_modules.traced_data.io import TracedDataJsonIO, TracedDataCodaIO
+from core_data_modules.traced_data.io import TracedDataJsonIO, TracedDataCSVIO
 from core_data_modules.util import IOUtils, PhoneNumberUuidTable
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Cleans the wt surveys and exports variables to Coda for "
+    parser = argparse.ArgumentParser(description="Cleans the surveys and exports variables to Coda for "
                                                  "manual verification and coding")
     parser.add_argument("user", help="User launching this program, for use by TracedData Metadata")
     parser.add_argument("json_input_path", metavar="json-input-path",
@@ -30,6 +31,9 @@ if __name__ == "__main__":
     parser.add_argument("coded_output_path", metavar="coding-output-path",
                         help="Directory to write coding files to")
     parser.add_argument("coding_schemes_path", metavar="coding-schemes-path", help="Directory containing coding schemes")
+    parser.add_argument("csv_output_path", metavar="csv-output-path", help="Directory to write thematic analysis csv files to")
+    parser.add_argument("flow_name", metavar="flow-name")
+
 
     args = parser.parse_args()
     user = args.user
@@ -39,6 +43,8 @@ if __name__ == "__main__":
     json_output_path = args.json_output_path
     coded_output_path = args.coded_output_path
     coding_schemes_path = args.coding_schemes_path
+    csv_output_path = args.csv_output_path
+    flow_name = args.flow_name
 
     CONTROL_CODES = ["NA", "NC", "WS"]
 
@@ -50,7 +56,7 @@ if __name__ == "__main__":
             self.cleaner = cleaner
             self.scheme_id = scheme_id
 
-    cleaning_plan = [
+    cleaning_plans = {"mcf_demog": [
         CleaningPlan("Gender (Text) - mcf_demog", "gender_clean", "Gender",
                      swahili.DemographicCleaner.clean_gender, "Scheme-12cb6f95"),
         CleaningPlan("Location (Text) - mcf_demog", "location_clean", "Location",
@@ -63,8 +69,12 @@ if __name__ == "__main__":
         CleaningPlan("Work (Text) - mcf_demog", "work_clean", "Work", None,
                      "Scheme-12be1d8f34eb"),
         CleaningPlan("Training (Text) - mcf_demog", "training_clean", "Training",
-                     None, "Scheme-8f0794281bb1"),
-    ]
+                     None, "Scheme-8f0794281bb1")],
+                    
+                    "event_date_poll":[CleaningPlan("Event_Date (Text) - event_date_poll", "event_date_clean", "Event_Date",
+                     None, None)]}
+
+    cleaning_plan = cleaning_plans[flow_name]
 
     # Load phone number UUID table
     with open(phone_uuid_table_path, "r") as f:
@@ -73,9 +83,9 @@ if __name__ == "__main__":
     # Load data from JSON file
     with open(json_input_path, "r") as f:
         data = TracedDataJsonIO.import_json_to_traced_data_iterable(f)
-
+    
     # Filter out test messages sent by AVF
-    contacts = [td for td in data if not td.get("test_run", False)]
+    data = [td for td in data if not td.get("test_run", False)]
 
     # Mark missing entries in the raw data as true missing
     for td in data:
@@ -89,21 +99,23 @@ if __name__ == "__main__":
     for plan in cleaning_plan:
         data = [td for td in data if td[plan.raw_field] not in {Codes.TRUE_MISSING, Codes.SKIPPED, Codes.NOT_LOGICAL}]
 
-    # Load code metadate from coding schemes
+    # Load code metadata from coding schemes
     code_ids = dict()
     IOUtils.ensure_dirs_exist(coding_schemes_path)
     for plan in cleaning_plan:
-        coding_scheme_path = path.join(coding_schemes_path, "{}.json".format(plan.coda_name))
-        with open(coding_scheme_path, "r") as f:
-            scheme = json.load(f)
-            codes = scheme[0]["Codes"]
-            code_ids[scheme[0]["SchemeID"]] = {}
-            for code in codes:
-                    if "ControlCode" in code:
-                        code_text = code["ControlCode"]
-                    else:
-                        code_text = code["DisplayText"]
-                    code_ids[scheme[0]["SchemeID"]][code_text] = code["CodeID"]            
+        if plan.scheme_id:
+            print(plan.scheme_id)
+            coding_scheme_path = path.join(coding_schemes_path, "{}.json".format(plan.coda_name))
+            with open(coding_scheme_path, "r") as f:
+                scheme = json.load(f)
+                codes = scheme[0]["Codes"]
+                code_ids[scheme[0]["SchemeID"]] = {}
+                for code in codes:
+                        if "ControlCode" in code:
+                            code_text = code["ControlCode"]
+                        else:
+                            code_text = code["DisplayText"]
+                        code_ids[scheme[0]["SchemeID"]][code_text] = code["CodeID"]            
 
     # Clean all responses, add MessageID and Labels
     for td in data:
@@ -143,19 +155,29 @@ if __name__ == "__main__":
     IOUtils.ensure_dirs_exist(coded_output_path)
     for plan in cleaning_plan:
         coded_output_file_path = path.join(coded_output_path, "{}.json".format(plan.coda_name))
+        csv_output_file_path = path.join(csv_output_path, "{}.csv".format(plan.coda_name))
         message_ids = list()
         messages_to_code = list()
+        avf_phone_ids = list()
+        all_messages = list()
         for td in data:
                 output = dict()        
                 output["Labels"] = td["{} Labels".format(plan.raw_field)]
                 output["MessageID"] = td["{} MessageID".format(plan.raw_field)]
                 output["Text"] = str(td[plan.raw_field])
-                output["CreationDateTimeUTC"] = isoparse(td["{} (Time) - {}".format(plan.coda_name, "mcf_demog")]).isoformat()
+                output["CreationDateTimeUTC"] = isoparse(td["{} (Time) - {}".format(plan.coda_name, flow_name)]).isoformat()
                 if output["MessageID"] not in message_ids:
                     messages_to_code.append(output)
                     message_ids.append(output["MessageID"])
+                output["avf_phone_id"] = td["avf_phone_id"]
+                if td["avf_phone_id"] not in avf_phone_ids:
+                    all_messages.append(output)
+                    avf_phone_ids.append(td["avf_phone_id"])
         with open(coded_output_file_path, "w") as f:
             jsonpickle.set_encoder_options("json", sort_keys=True)
             f.write(jsonpickle.dumps(messages_to_code))
             f.write("\n")
-            
+        with open(csv_output_file_path, "wb") as f:
+            writer = unicodecsv.DictWriter(f, fieldnames=["avf_phone_id", "Text"], extrasaction="ignore")
+            writer.writeheader()
+            writer.writerows(all_messages)
