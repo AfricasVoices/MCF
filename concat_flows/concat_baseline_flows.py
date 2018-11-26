@@ -56,6 +56,9 @@ if __name__ == "__main__":
     with open(baseline_reminder_2_input_path, 'r') as f:
         baseline_reminder_2 = TracedDataJsonIO.import_json_to_traced_data_iterable(f)
 
+    baseline_reminder_1 = [td for td in baseline_reminder_1 if not td.get("Baseline_Complete_Split (Category) - mcf_baseline_reminder", "Completed")]
+    baseline_reminder_2 = [td for td in baseline_reminder_2 if not td.get("Baseline_Complete_Split (Category) - mcf_baseline_reminder_2", "Completed")]
+
     # Normalise the keys
     normalise_activation_flow_keys(baseline_reminder_1, 'mcf_baseline_reminder_1', 'mcf_baseline')
     normalise_activation_flow_keys(baseline_reminder_2, 'mcf_baseline_reminder_2', 'mcf_baseline')
