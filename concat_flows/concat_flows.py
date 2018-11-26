@@ -48,23 +48,23 @@ if __name__ == "__main__":
 
     # Load the 2 flows that were saved as JSON
     with open(radio_activation_input_path, 'r') as f:
-        radio_activation_td = TracedDataJsonIO.import_json_to_traced_data_iterable(f)
+        radio_activation_td_list = TracedDataJsonIO.import_json_to_traced_data_iterable(f)
     with open(offline_activation_input_path, 'r') as f:
-        offline_activation_td = TracedDataJsonIO.import_json_to_traced_data_iterable(f)
+        offline_activation_td_list = TracedDataJsonIO.import_json_to_traced_data_iterable(f)
 
     # Set source flow (radio or offline)
-    set_source_flow(radio_activation_td, 'radio')
-    set_source_flow(offline_activation_td, 'offline')
+    set_source_flow(radio_activation_td_list, 'radio')
+    set_source_flow(offline_activation_td_list, 'offline')
     
     # Normalise the keys
-    normalise_activation_flow_keys(radio_activation_td, 'mcf_activation_radio', 'mcf_activation')
-    normalise_activation_flow_keys(offline_activation_td, 'mcf_activation_offline', 'mcf_activation')
+    normalise_activation_flow_keys(radio_activation_td_list, 'mcf_activation_radio', 'mcf_activation')
+    normalise_activation_flow_keys(offline_activation_td_list, 'mcf_activation_offline', 'mcf_activation')
     
 
     # Concatenate the flows
     activation_combined = []
-    activation_combined.extend(radio_activation_td)
-    activation_combined.extend(offline_activation_td)
+    activation_combined.extend(radio_activation_td_list)
+    activation_combined.extend(offline_activation_td_list)
     
 
     with open(traced_json_output_path, "w") as f:
