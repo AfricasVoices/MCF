@@ -72,7 +72,9 @@ if __name__ == "__main__":
                      None, "Scheme-8f0794281bb1")],
                     
                     "event_date_poll":[CleaningPlan("Event_Date (Text) - event_date_poll", "event_date_clean", "Event_Date",
-                     None, None)]}
+                     None, None)],
+                    "event_name_poll":[CleaningPlan("Event_Name (Text) - event_name_poll", "event_name_clean", "Event_Name",
+                     None, None)], }
 
     cleaning_plan = cleaning_plans[flow_name]
 
