@@ -1,0 +1,224 @@
+{
+  "Codes": [
+    {
+      "CodeID": "code-c2acb6ce7ec4",
+      "CodeType": "Normal",
+      "DisplayText": "productivity",
+      "NumericValue": 0,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-e2a213485f01",
+      "CodeType": "Normal",
+      "DisplayText": "talks/advice\n",
+      "NumericValue": 1,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-bb03e4d7e502",
+      "CodeType": "Normal",
+      "DisplayText": "food/drinks",
+      "NumericValue": 2,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-aef39abb328c",
+      "CodeType": "Normal",
+      "DisplayText": "participation",
+      "NumericValue": 3,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-13e814ef029d",
+      "CodeType": "Normal",
+      "DisplayText": "business ideas",
+      "NumericValue": 4,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-b347b0422b92",
+      "CodeType": "Normal",
+      "DisplayText": "skills",
+      "NumericValue": 5,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-b19e04222f7d",
+      "CodeType": "Normal",
+      "DisplayText": "networking",
+      "NumericValue": 6,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-34b2c5e7d520",
+      "CodeType": "Normal",
+      "DisplayText": "help",
+      "NumericValue": 7,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-52820f111597",
+      "CodeType": "Normal",
+      "DisplayText": "mentorship",
+      "NumericValue": 8,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-f842b38c432c",
+      "CodeType": "Normal",
+      "DisplayText": "entertainment",
+      "NumericValue": 9,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-94cbacec9369",
+      "CodeType": "Normal",
+      "DisplayText": "opportunities",
+      "NumericValue": 10,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-67944b167700",
+      "CodeType": "Normal",
+      "DisplayText": "motivation",
+      "NumericValue": 11,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-54452b5463ea",
+      "CodeType": "Normal",
+      "DisplayText": "talent promotion",
+      "NumericValue": 12,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-c609665fa987",
+      "CodeType": "Normal",
+      "DisplayText": "money",
+      "NumericValue": 13,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-da417adf492c",
+      "CodeType": "Normal",
+      "DisplayText": "open expectations",
+      "NumericValue": 14,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-453a6ab6c5ad",
+      "CodeType": "Normal",
+      "DisplayText": "capital/loans",
+      "NumericValue": 15,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-736deb7f4459",
+      "CodeType": "Normal",
+      "DisplayText": "employment",
+      "NumericValue": 16,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-be68e4feaaa7",
+      "CodeType": "Normal",
+      "DisplayText": "empowerment",
+      "NumericValue": 17,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-37e6e6dec978",
+      "CodeType": "Normal",
+      "DisplayText": "unity",
+      "NumericValue": 18,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-f467fd027068",
+      "CodeType": "Normal",
+      "DisplayText": "learn from each other",
+      "NumericValue": 19,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-6f8bd4679d96",
+      "CodeType": "Normal",
+      "DisplayText": "change in life",
+      "NumericValue": 20,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-3da23a20a700",
+      "CodeType": "Normal",
+      "DisplayText": "other",
+      "NumericValue": 21,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-NA-f93d3eb7",
+      "CodeType": "Control",
+      "ControlCode": "NA",
+      "DisplayText": "NA (missing)",
+      "NumericValue": -10,
+      "StringValue": "NA",
+      "VisibleInCoda": false
+    },
+    {
+      "CodeID": "code-NS-2c11b7c9",
+      "CodeType": "Control",
+      "ControlCode": "NS",
+      "DisplayText": "NS (skip)",
+      "NumericValue": -20,
+      "StringValue": "NS",
+      "VisibleInCoda": false
+    },
+    {
+      "CodeID": "code-NC-42f1d983",
+      "CodeType": "Control",
+      "ControlCode": "NC",
+      "DisplayText": "NC (not coded)",
+      "NumericValue": -30,
+      "StringValue": "NC",
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-NR-5e3eee23",
+      "CodeType": "Control",
+      "ControlCode": "NR",
+      "DisplayText": "NR (not reviewed)",
+      "NumericValue": -40,
+      "StringValue": "NR",
+      "VisibleInCoda": false
+    },
+    {
+      "CodeID": "code-NIC-99631cb8",
+      "CodeType": "Control",
+      "ControlCode": "NIC",
+      "DisplayText": "NIC (not internally consistent)",
+      "NumericValue": -50,
+      "StringValue": "NIC",
+      "VisibleInCoda": false
+    },
+    {
+      "CodeID": "code-STOP-08b832a8",
+      "CodeType": "Control",
+      "ControlCode": "STOP",
+      "DisplayText": "STOP",
+      "NumericValue": -90,
+      "StringValue": "STOP",
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-WS-adb25603b7af",
+      "CodeType": "Control",
+      "ControlCode": "WS",
+      "DisplayText": "WS (wrong scheme)",
+      "NumericValue": -100,
+      "StringValue": "WS",
+      "VisibleInCoda": true
+    }
+  ],
+  "Name": "Event_Expectation",
+  "SchemeID": "Scheme-39efba13fe14",
+  "Version": "0.0.0.1"
+}

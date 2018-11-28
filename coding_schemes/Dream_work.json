@@ -1,0 +1,259 @@
+{
+  "Codes": [
+    {
+      "CodeID": "code-fdcd39eeb3be",
+      "CodeType": "Normal",
+      "DisplayText": "business/self emoloyment (non-specific)",
+      "NumericValue": 0,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-e8e96a6f5800",
+      "CodeType": "Normal",
+      "DisplayText": "hospitality industry",
+      "NumericValue": 1,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-dc5deb054acd",
+      "CodeType": "Normal",
+      "DisplayText": "beauty industry",
+      "NumericValue": 2,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-08ce0324a124",
+      "CodeType": "Normal",
+      "DisplayText": "food industry",
+      "NumericValue": 3,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-fb99c0a5988e",
+      "CodeType": "Normal",
+      "DisplayText": "online jobs",
+      "NumericValue": 4,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-f4f1807924ae",
+      "CodeType": "Normal",
+      "DisplayText": "music industry",
+      "NumericValue": 5,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-e06fd6256b6f",
+      "CodeType": "Normal",
+      "DisplayText": "fashion industry",
+      "NumericValue": 6,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-3ebf79e02a86",
+      "CodeType": "Normal",
+      "DisplayText": "craft industry",
+      "NumericValue": 7,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-077804218a62",
+      "CodeType": "Normal",
+      "DisplayText": "creative industry",
+      "NumericValue": 8,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-c95d232f633f",
+      "CodeType": "Normal",
+      "DisplayText": "mass media industry",
+      "NumericValue": 9,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-3e79008e7a90",
+      "CodeType": "Normal",
+      "DisplayText": "research industry",
+      "NumericValue": 10,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-5ed72e8d4248",
+      "CodeType": "Normal",
+      "DisplayText": "agriculture/agribusiness industry",
+      "NumericValue": 11,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-97222a6cd696",
+      "CodeType": "Normal",
+      "DisplayText": "retail industry",
+      "NumericValue": 12,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-d45593266c73",
+      "CodeType": "Normal",
+      "DisplayText": "film industry",
+      "NumericValue": 13,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-09689ac28681",
+      "CodeType": "Normal",
+      "DisplayText": "service industry",
+      "NumericValue": 14,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-ba12f548690b",
+      "CodeType": "Normal",
+      "DisplayText": "auto-repair industry",
+      "NumericValue": 15,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-e009b042d220",
+      "CodeType": "Normal",
+      "DisplayText": "transport industry",
+      "NumericValue": 16,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-1d774eb0e3cb",
+      "CodeType": "Normal",
+      "DisplayText": "financial services industry",
+      "NumericValue": 17,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-2739655a52d6",
+      "CodeType": "Normal",
+      "DisplayText": "education industry",
+      "NumericValue": 18,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-d26673ca7255",
+      "CodeType": "Normal",
+      "DisplayText": "medical services industry",
+      "NumericValue": 19,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-0706452a4494",
+      "CodeType": "Normal",
+      "DisplayText": "NGO",
+      "NumericValue": 20,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-a7c3f0eba119",
+      "CodeType": "Normal",
+      "DisplayText": "no dream work",
+      "NumericValue": 21,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-54403804ef33",
+      "CodeType": "Normal",
+      "DisplayText": "tourism industry",
+      "NumericValue": 22,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-c957337c1216",
+      "CodeType": "Normal",
+      "DisplayText": "police service",
+      "NumericValue": 23,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-718a5c8a5059",
+      "CodeType": "Normal",
+      "DisplayText": "legal industry",
+      "NumericValue": 24,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-0873b0592e1c",
+      "CodeType": "Normal",
+      "DisplayText": "other (not relevant)",
+      "NumericValue": 25,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-cea8d8a271f3",
+      "CodeType": "Normal",
+      "DisplayText": "social work",
+      "NumericValue": 26,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-NA-f93d3eb7",
+      "CodeType": "Control",
+      "ControlCode": "NA",
+      "DisplayText": "NA (missing)",
+      "NumericValue": -10,
+      "StringValue": "NA",
+      "VisibleInCoda": false
+    },
+    {
+      "CodeID": "code-NS-2c11b7c9",
+      "CodeType": "Control",
+      "ControlCode": "NS",
+      "DisplayText": "NS (skip)",
+      "NumericValue": -20,
+      "StringValue": "NS",
+      "VisibleInCoda": false
+    },
+    {
+      "CodeID": "code-NC-42f1d983",
+      "CodeType": "Control",
+      "ControlCode": "NC",
+      "DisplayText": "NC (not coded)",
+      "NumericValue": -30,
+      "StringValue": "NC",
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-NR-5e3eee23",
+      "CodeType": "Control",
+      "ControlCode": "NR",
+      "DisplayText": "NR (not reviewed)",
+      "NumericValue": -40,
+      "StringValue": "NR",
+      "VisibleInCoda": false
+    },
+    {
+      "CodeID": "code-NIC-99631cb8",
+      "CodeType": "Control",
+      "ControlCode": "NIC",
+      "DisplayText": "NIC (not internally consistent)",
+      "NumericValue": -50,
+      "StringValue": "NIC",
+      "VisibleInCoda": false
+    },
+    {
+      "CodeID": "code-STOP-08b832a8",
+      "CodeType": "Control",
+      "ControlCode": "STOP",
+      "DisplayText": "STOP",
+      "NumericValue": -90,
+      "StringValue": "STOP",
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-WS-adb25603b7af",
+      "CodeType": "Control",
+      "ControlCode": "WS",
+      "DisplayText": "WS (wrong scheme)",
+      "NumericValue": -100,
+      "StringValue": "WS",
+      "VisibleInCoda": true
+    }
+  ],
+  "Name": "Dream_work",
+  "SchemeID": "Scheme-227097152c0f",
+  "Version": "0.0.0.1"
+}
