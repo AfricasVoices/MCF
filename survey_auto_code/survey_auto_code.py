@@ -71,10 +71,25 @@ if __name__ == "__main__":
         CleaningPlan("Training (Text) - mcf_demog", "training_clean", "Training",
                      None, "Scheme-8f0794281bb1")],
                     
-                    "event_date_poll":[CleaningPlan("Event_Date (Text) - event_date_poll", "event_date_clean", "Event_Date",
+                    "event_date_poll":
+        [CleaningPlan("Event_Date (Text) - event_date_poll", "event_date_clean", "Event_Date",
                      None, None)],
-                    "event_name_poll":[CleaningPlan("Event_Name (Text) - event_name_poll", "event_name_clean", "Event_Name",
-                     None, None)], }
+                    "event_name_poll":
+        [CleaningPlan("Event_Name (Text) - event_name_poll", "event_name_clean", "Event_Name",
+                     None, None)],
+                     
+                    "mcf_baseline":
+        [CleaningPlan("Event_Expectation (Text) - mcf_baseline", "event_expectation_clean", "Event_Expectation",
+                     None, None), 
+        CleaningPlan("Dream_Work (Text) - mcf_baseline", "dream_work_clean", "Dream_Work",
+                     None, None),
+        CleaningPlan("Support_Yes_No (Text) - mcf_baseline", "support_yesno_clean", "Support_Yes_No",
+                     None, None),
+        CleaningPlan("Challenge (Text) - mcf_baseline", "challenge", "Challenge",
+                     None, None),
+        CleaningPlan("Voice_Projects_Likert (Text) - mcf_baseline", "voice_projects", "Voice_Projects_Likert",
+                     None, None)]
+                     }
 
     cleaning_plan = cleaning_plans[flow_name]
 
