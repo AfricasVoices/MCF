@@ -10,7 +10,8 @@ import pytz
 from core_data_modules.traced_data import Metadata
 from core_data_modules.traced_data.io import TracedDataJsonIO, TracedDataCodaIO, TracedDataCSVIO
 from core_data_modules.util import IOUtils
-from dateutil.parser import isoparse
+from dateutil.parser import isoparse, parse
+from datetime import datetime
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Cleans a list of messages, and outputs to formats "
@@ -52,6 +53,7 @@ if __name__ == "__main__":
     # Convert date/time of messages to EAT
     utc_key = "{} (Time) - {}".format(variable_name, flow_name)
     eat_key = "{} (Time EAT) - {}".format(variable_name, flow_name)
+    eat_output_key = "{} (Time EAT output) - {}".format(variable_name, flow_name)
     inside_time_window = []
     START_TIME = isoparse("2018-10-18T00+03:00")
     END_TIME = isoparse("2018-12-27T00+03:00")
@@ -80,9 +82,10 @@ if __name__ == "__main__":
     for td in show_messages:
         utc_time = isoparse(td[utc_key])
         eat_time = utc_time.astimezone(pytz.timezone("Africa/Nairobi")).isoformat()
+        eat_time_output = parse(eat_time).strftime("%Y-%m-%d %H:%M")
 
         td.append_data(
-            {eat_key: eat_time},
+            {eat_key: eat_time, eat_output_key: eat_time_output},
             Metadata(user, Metadata.get_call_location(), time.time())
         )
 
@@ -99,10 +102,7 @@ if __name__ == "__main__":
     run_id_key = "{} (Run ID) - {}".format(variable_name, flow_name)
     raw_text_key = "{} (Text) - {}".format(variable_name, flow_name)
     with open(csv_output_path, "w") as f:
-        TracedDataCSVIO.export_traced_data_iterable_to_csv(show_messages, f, headers=["avf_phone_id", run_id_key, raw_text_key])
-
-    raw_text_key = "{} (Text) - {}".format(variable_name, flow_name)
-    time_key = "{} (Time) - {}".format(variable_name, flow_name)
+        TracedDataCSVIO.export_traced_data_iterable_to_csv(show_messages, f, headers=["avf_phone_id", eat_output_key, raw_text_key])
 
     # Update traced data objects with MessageID and Labels and optionally whether they are from the selected segment
     for td in show_messages:
@@ -115,13 +115,11 @@ if __name__ == "__main__":
         message_id[message_id_key] = message_id_string
         labels_key = "{} Labels".format(raw_text_key)
         labels[labels_key] = []
-        
         if segment:
             in_segment = {"in_segment": False}
             if td["avf_phone_id"] in segment:
                 in_segment = {"in_segment": True}
                 td.append_data(in_segment, Metadata(user, Metadata.get_call_location(), time.time()))
-
         td.append_data(message_id, Metadata(user, Metadata.get_call_location(), time.time()))
         td.append_data(labels, Metadata(user, Metadata.get_call_location(), time.time()))
 
