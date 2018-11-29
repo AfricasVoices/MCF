@@ -77,6 +77,9 @@ if __name__ == "__main__":
                     "event_name_poll":
         [CleaningPlan("Event_Name (Text) - event_name_poll", "event_name_clean", "Event_Name",
                      None, None)],
+                     "event_time_poll":
+        [CleaningPlan("Event_Time (Text) - event_time_poll", "event_time_clean", "Event_Time",
+                     None, None)],
                      
                     "mcf_baseline":
         [CleaningPlan("Event_Expectation (Text) - mcf_baseline", "event_expectation_clean", "Event_Expectation",
