@@ -2,13 +2,14 @@ import argparse
 import time
 from os import path
 import json
+import unicodecsv
 from dateutil.parser import isoparse
 
 from core_data_modules.cleaners import CharacterCleaner, Codes
 from core_data_modules.cleaners.codes import SomaliaCodes
 from core_data_modules.cleaners.location_tools import SomaliaLocations
 from core_data_modules.traced_data import Metadata
-from core_data_modules.traced_data.io import TracedDataJsonIO, TracedDataCodaIO, TracedDataTheInterfaceIO
+from core_data_modules.traced_data.io import TracedDataJsonIO, TracedDataCodaIO, TracedDataCodingCSVIO
 from core_data_modules.util import IOUtils
 
 
@@ -69,24 +70,28 @@ class TracedDataCoda2IO(object):
                                 Metadata(label["Origin"]["OriginID"], Metadata.get_call_location(),
                                         isoparse(label["DateTimeUTC"]).timestamp())
     )
+    
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Merges manually cleaned files back into a traced data file.")
     parser.add_argument("user", help="User launching this program, for use by TracedData Metadata")
     parser.add_argument("json_input_path", metavar="json-input-path",
                         help="Path to JSON input file, which contains a list of TracedData objects")
-    parser.add_argument("coded_input_path", metavar="coded-input-path",
+    parser.add_argument("coded_coda_input_path", metavar="coded-input-path",
                         help="Directory to read manually-coded Coda files from")
+    parser.add_argument("coded_csv_input_path", metavar="coded-csv_input-path",
+                        help="Directory to read manually-coded csv files from")
     parser.add_argument("json_output_path", metavar="json-output-path",
                         help="Path to a JSON file to write merged results to")
     parser.add_argument("scheme_input_path", metavar="scheme-input-path",
-                        help="Directory to read Coda scheme files from")
+                        help="Directory to read Coda scheme files from"),
                         
     
     args = parser.parse_args()
     user = args.user
     json_input_path = args.json_input_path
-    coded_input_path = args.coded_input_path
+    coded_coda_input_path = args.coded_coda_input_path
+    coded_csv_input_path = args.coded_csv_input_path
     json_output_path = args.json_output_path
     scheme_input_path = args.scheme_input_path
 
@@ -96,7 +101,7 @@ if __name__ == "__main__":
             self.coda_name = coda_name
             self.coded_name = coded_name
 
-    merge_plan = [
+    merge_plan_coda = [
         MergePlan("Gender (Text) - mcf_demog", "Gender", "Gender_Coded"),
         MergePlan("Location (Text) - mcf_demog", "Location", "Location_Coded"),
         MergePlan("Education (Text) - mcf_demog", "Education", "Education_Coded"),
@@ -105,13 +110,18 @@ if __name__ == "__main__":
         MergePlan("Age (Text) - mcf_demog", "Age", "Age_Coded"),
     ]
 
+    merge_plan_csv = [
+        MergePlan("Event_Date (Text) - event_date_poll", "Event_Date", "Event_Date_Coded"),
+        MergePlan("Event_Time (Text) - event_time_poll", "Event_Time", "Event_Time_Coded")
+    ]
+
     # Load data from JSON file
     with open(json_input_path, "r") as f:
         data = TracedDataJsonIO.import_json_to_traced_data_iterable(f)
 
     # Merge manually coded survey Coda files into the cleaned dataset
-    for plan in merge_plan:
-        coda_file_path = path.join(coded_input_path, "{}_coded.json".format(plan.coda_name))
+    for plan in merge_plan_coda:
+        coda_file_path = path.join(coded_coda_input_path, "{}_coded.json".format(plan.coda_name))
 
         if not path.exists(coda_file_path):
             print("Warning: No Coda file found for key '{}'".format(plan.coda_name))
@@ -130,9 +140,26 @@ if __name__ == "__main__":
             TracedDataCoda2IO.import_coda_to_traced_data_iterable(
                 user, data, "{} MessageID".format(plan.raw_field), {plan.coded_name: coding_scheme}, f)
 
+ 
+    # Merge manually coded survey Coda files into the cleaned dataset
+    for plan in merge_plan_csv:
+        csv_file_path = path.join(coded_input_path, "{}_coded.csv".format(plan.coda_name))
+
+        if not path.exists( csv_file_path):
+            print("Warning: No Coda file found for key '{}'".format(plan.coda_name))
+            for td in data:
+                td.append_data(
+                    {plan.coded_name: None},
+                    Metadata(user, Metadata.get_call_location(), time.time())
+                )
+            continue
+
+        with open(csv_file_path, "r") as f:
+            TracedDataCodingCSVIO.import_coding_csv_to_traced_data_iterable(
+                user, data, plan.raw_field, plan.coded_name, plan.coda_name, plan.coded_name, f)
+
     # Write coded data back out to disk
     IOUtils.ensure_dirs_exist_for_file(json_output_path)
     with open(json_output_path, "w") as f:
         TracedDataJsonIO.export_traced_data_iterable_to_json(data, f, pretty_print=True)
-
     
