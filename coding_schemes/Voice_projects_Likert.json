@@ -1,0 +1,110 @@
+{
+  "Codes": [
+    {
+      "CodeID": "code-68dcef3e6818",
+      "CodeType": "Normal",
+      "DisplayText": "not important at all (1)",
+      "Shortcut": "1", 
+      "NumericValue": 1,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-91fbcee7848f",
+      "CodeType": "Normal",
+      "DisplayText": "not important (2)",
+      "Shortcut": "2", 
+      "NumericValue": 2,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-5921280c7bb2",
+      "CodeType": "Normal",
+      "DisplayText": "neither/nor (3)",
+      "Shortcut": "3", 
+      "NumericValue": 3,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-8b91010a024f",
+      "CodeType": "Normal",
+      "DisplayText": "important (4)",
+      "Shortcut": "4", 
+      "NumericValue": 4,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-071ac87892df",
+      "CodeType": "Normal",
+      "DisplayText": "very important (5)",
+      "Shortcut": "5", 
+      "NumericValue": 5,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-NA-f93d3eb7",
+      "CodeType": "Control",
+      "ControlCode": "NA",
+      "DisplayText": "NA (missing)",
+      "NumericValue": -10,
+      "StringValue": "NA",
+      "VisibleInCoda": false
+    },
+    {
+      "CodeID": "code-NS-2c11b7c9",
+      "CodeType": "Control",
+      "ControlCode": "NS",
+      "DisplayText": "NS (skip)",
+      "NumericValue": -20,
+      "StringValue": "NS",
+      "VisibleInCoda": false
+    },
+    {
+      "CodeID": "code-NC-42f1d983",
+      "CodeType": "Control",
+      "ControlCode": "NC",
+      "DisplayText": "NC (not coded)",
+      "NumericValue": -30,
+      "StringValue": "NC",
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-NR-5e3eee23",
+      "CodeType": "Control",
+      "ControlCode": "NR",
+      "DisplayText": "NR (not reviewed)",
+      "NumericValue": -40,
+      "StringValue": "NR",
+      "VisibleInCoda": false
+    },
+    {
+      "CodeID": "code-NIC-99631cb8",
+      "CodeType": "Control",
+      "ControlCode": "NIC",
+      "DisplayText": "NIC (not internally consistent)",
+      "NumericValue": -50,
+      "StringValue": "NIC",
+      "VisibleInCoda": false
+    },
+    {
+      "CodeID": "code-STOP-08b832a8",
+      "CodeType": "Control",
+      "ControlCode": "STOP",
+      "DisplayText": "STOP",
+      "NumericValue": -90,
+      "StringValue": "STOP",
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-WS-adb25603b7af",
+      "CodeType": "Control",
+      "ControlCode": "WS",
+      "DisplayText": "WS (wrong scheme)",
+      "NumericValue": -100,
+      "StringValue": "WS",
+      "VisibleInCoda": true
+    }
+  ],
+  "Name": "Voice_projects_Likert",
+  "SchemeID": "Scheme-e45fbe63954c",
+  "Version": "0.0.0.1"
+}

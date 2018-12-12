@@ -1,0 +1,147 @@
+{
+  "Codes": [
+    {
+      "CodeID": "code-78120355f59d",
+      "CodeType": "Normal",
+      "DisplayText": "lack of capital/funds/loans",
+      "NumericValue": 0,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-064562cd42a9",
+      "CodeType": "Normal",
+      "DisplayText": "lack of advice/information/knowledge",
+      "NumericValue": 1,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-b0b710fd69d6",
+      "CodeType": "Normal",
+      "DisplayText": "tribalism",
+      "NumericValue": 2,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-6df77b0b7185",
+      "CodeType": "Normal",
+      "DisplayText": "lack of academic qualifications",
+      "NumericValue": 3,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-f0874abd34f3",
+      "CodeType": "Normal",
+      "DisplayText": "difficult to find employment",
+      "NumericValue": 4,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-b835b5f1d87e",
+      "CodeType": "Normal",
+      "DisplayText": "lack of support",
+      "NumericValue": 5,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-86ead2eb0ca2",
+      "CodeType": "Normal",
+      "DisplayText": "county council harassment",
+      "NumericValue": 6,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-d8d5ea38082d",
+      "CodeType": "Normal",
+      "DisplayText": "corruption",
+      "NumericValue": 7,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-66f78ac95ba8",
+      "CodeType": "Normal",
+      "DisplayText": "lack of space to do business",
+      "NumericValue": 8,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-e4abca5ed7c1",
+      "CodeType": "Normal",
+      "DisplayText": "competition",
+      "NumericValue": 9,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-614a34130f99",
+      "CodeType": "Normal",
+      "DisplayText": "other",
+      "NumericValue": 10,
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-NA-f93d3eb7",
+      "CodeType": "Control",
+      "ControlCode": "NA",
+      "DisplayText": "NA (missing)",
+      "NumericValue": -10,
+      "StringValue": "NA",
+      "VisibleInCoda": false
+    },
+    {
+      "CodeID": "code-NS-2c11b7c9",
+      "CodeType": "Control",
+      "ControlCode": "NS",
+      "DisplayText": "NS (skip)",
+      "NumericValue": -20,
+      "StringValue": "NS",
+      "VisibleInCoda": false
+    },
+    {
+      "CodeID": "code-NC-42f1d983",
+      "CodeType": "Control",
+      "ControlCode": "NC",
+      "DisplayText": "NC (not coded)",
+      "NumericValue": -30,
+      "StringValue": "NC",
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-NR-5e3eee23",
+      "CodeType": "Control",
+      "ControlCode": "NR",
+      "DisplayText": "NR (not reviewed)",
+      "NumericValue": -40,
+      "StringValue": "NR",
+      "VisibleInCoda": false
+    },
+    {
+      "CodeID": "code-NIC-99631cb8",
+      "CodeType": "Control",
+      "ControlCode": "NIC",
+      "DisplayText": "NIC (not internally consistent)",
+      "NumericValue": -50,
+      "StringValue": "NIC",
+      "VisibleInCoda": false
+    },
+    {
+      "CodeID": "code-STOP-08b832a8",
+      "CodeType": "Control",
+      "ControlCode": "STOP",
+      "DisplayText": "STOP",
+      "NumericValue": -90,
+      "StringValue": "STOP",
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-WS-adb25603b7af",
+      "CodeType": "Control",
+      "ControlCode": "WS",
+      "DisplayText": "WS (wrong scheme)",
+      "NumericValue": -100,
+      "StringValue": "WS",
+      "VisibleInCoda": true
+    }
+  ],
+  "Name": "Challenge",
+  "SchemeID": "Scheme-589cba0b0aa3",
+  "Version": "0.0.0.1"
+}
