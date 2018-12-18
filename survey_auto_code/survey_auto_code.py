@@ -88,12 +88,28 @@ if __name__ == "__main__":
                      None, None),
         CleaningPlan("Support_Yes_No (Text) - mcf_baseline", "support_yesno_clean", "Support_Yes_No",
                      None, None),
-        CleaningPlan("Challenge (Text) - mcf_baseline", "challenge", "Challenge",
+        CleaningPlan("Challenge (Text) - mcf_baseline", "challenge_clean", "Challenge",
                      None, None),
-        CleaningPlan("Voice_Projects_Likert (Text) - mcf_baseline", "voice_projects", "Voice_Projects_Likert",
+        CleaningPlan("Voice_Projects_Likert (Text) - mcf_baseline", "voice_projects_clean", "Voice_Projects_Likert",
+                     None, None)],
+
+                      "mcf_endline":
+        [CleaningPlan("Event_Expectations_Met (Text) - mcf_endline", "event_expectations_met_clean", "Event_Expectations_Met",
+                     None, None), 
+        CleaningPlan("Event_Expectation_Reason (Text) - mcf_endline", "event_expectation_reason_clean", "Event_Expectation_Reason",
+                     None, None),
+        CleaningPlan("Event_Work_Dream (Text) - mcf_endline", "event_work_dream_clean", "Event_Work_Dream",
+                     None, None),
+        CleaningPlan("Support_Provided (Text) - mcf_endline", "support_provided_clean", "Support_Provided",
+                     None, None),
+        CleaningPlan("Challenge_Addressed (Text) - mcf_endline", "challenge_addressed_clean", "Challenge_Addressed",
+                     None, None),
+        CleaningPlan("Challenge_Addressed_Yes_No (Text) - mcf_endline", "challenge_addressed_yes_no_clean", "Challenge_Addressed_Yes_No",
+                     None, None),
+        CleaningPlan("Voice_Heard (Text) - mcf_endline", "voice_heard_clean", "Voice_Heard",
                      None, None)]
                      }
-
+        
     cleaning_plan = cleaning_plans[flow_name]
 
     # Load phone number UUID table
@@ -111,20 +127,19 @@ if __name__ == "__main__":
     for td in data:
         missing = dict()
         for plan in cleaning_plan:
-            if plan.raw_field not in td:
-                missing[plan.raw_field] = Codes.TRUE_MISSING
+            if plan.coda_name in ["Event_Expectation_Reason", "Challenge_Addressed"]:
+                if plan.raw_field not in td:
+                    missing[plan.raw_field] = Codes.SKIPPED
+            else:
+                if plan.raw_field not in td:
+                    missing[plan.raw_field] = Codes.TRUE_MISSING
         td.append_data(missing, Metadata(user, Metadata.get_call_location(), time.time()))
-
-    # Exclude missing data
-    for plan in cleaning_plan:
-        data = [td for td in data if td[plan.raw_field] not in {Codes.TRUE_MISSING, Codes.SKIPPED, Codes.NOT_LOGICAL}]
 
     # Load code metadata from coding schemes
     code_ids = dict()
     IOUtils.ensure_dirs_exist(coding_schemes_path)
     for plan in cleaning_plan:
         if plan.scheme_id:
-            print(plan.scheme_id)
             coding_scheme_path = path.join(coding_schemes_path, "{}.json".format(plan.coda_name))
             with open(coding_scheme_path, "r") as f:
                 scheme = json.load(f)
@@ -181,6 +196,8 @@ if __name__ == "__main__":
         avf_phone_ids = list()
         all_messages = list()
         for td in data:
+            # Filter missing data and add Coda fields
+            if td[plan.raw_field] not in {Codes.TRUE_MISSING, Codes.SKIPPED, Codes.NOT_LOGICAL}:
                 output = dict()        
                 output["Labels"] = td["{} Labels".format(plan.raw_field)]
                 output["MessageID"] = td["{} MessageID".format(plan.raw_field)]
@@ -193,6 +210,7 @@ if __name__ == "__main__":
                 if td["avf_phone_id"] not in avf_phone_ids:
                     all_messages.append(output)
                     avf_phone_ids.append(td["avf_phone_id"])
+                    
         with open(coded_output_file_path, "w") as f:
             jsonpickle.set_encoder_options("json", sort_keys=True)
             f.write(jsonpickle.dumps(messages_to_code))
